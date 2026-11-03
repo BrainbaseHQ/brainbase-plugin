@@ -1,0 +1,14 @@
+brainbase-platform	I have a Brainbase API key and no CLI. Using curl, show me how to start a task with a brand-new inline agent spec over the HTTP API, send it a follow-up message, and read its events as they happen.
+brainbase-cli	I have a folder with instructions for an agent. Walk me through getting it onto Brainbase with the CLI from a fresh machine and kicking off a task I wait on, all from a non-interactive CI job.
+brainbase-llm-gateway	A Brainbase task is running slowly on the default model. How do I switch it to a different model while it's running, from both the CLI and the API? And what does setting model to auto actually do?
+brainbase-sandboxes	Which sandbox providers does Brainbase offer, how do I pick between them, and how do I list and remove the machines my agents have left running?
+brainbase-orchestration	Write a brainbase-orchestration.yaml where a triage agent hands confirmed bugs to a fixer agent, and the triage agent runs every weekday at 09:00 UTC. Explain how the handoff actually happens at runtime.
+brainbase-surfaces	Connect my Brainbase agent to Slack using the CLI. I only have a PAT in CI. Also tell me what people can do with the agent inside Slack once it's connected.
+brainbase-interfaces	Build a private dashboard for my Brainbase support agent that everyone in the org can open. Which harness do I need, how do I create and publish it, and how do I give it a nicer address?
+brainbase-benchmarks	I have a CSV of 50 support questions with expected answers. Create a Brainbase benchmark from it, run it against two models, and show me how to compare the results.
+brainbase-evals	Add an eval to my brainbase.agent.yaml that fails any turn where the agent promises a refund. Explain where the verdicts show up and what the judge costs.
+brainbase-permissions	I need a Brainbase token for CI that can push agents but must not be able to manage members. Which scope, how do I create it, and what error will I see if I pick the wrong one?
+brainbase-tools	Add my company's remote MCP server at https://mcp.example.com/sse, which needs an API key header, to my Brainbase agent's manifest, and show me how to verify it works from the CLI.
+brainbase-skills	Install the skill acme/pdf-tools version 1.2.3 from the Brainbase registry into my agent, both via the manifest and the CLI, and tell me where it ends up on the Claude Code harness.
+brainbase-memory	I want my Brainbase agent to remember each customer's preferences across tasks. Set up memory, define a table for it, and show me the tool calls the agent will make.
+brainbase-payments	Set up auto top-up so my Brainbase org never runs out of credits, and tell me what consumes credits and how much one credit is worth.

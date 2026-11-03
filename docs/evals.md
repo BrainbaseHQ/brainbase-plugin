@@ -82,3 +82,26 @@ Three skill edits, each re-run on its case with the same executor and graded aga
 | skills-install-registry-skill | The pinning rule now says which pin freezes what: a source-string pin freezes contents, an agent-version pin does not | 5/6 | 6/6 |
 
 The old skills-install answer held the only factually wrong sentence found across the whole benchmark (it said a `@1.2.3` source pin does not freeze contents). The reworded rule removes the ambiguity, and a new assertion now checks it.
+
+## Fresh-agent trigger test (2026-11-03)
+
+The eval runs above hand the model the skill's path. This test checks the other half: that a model with no memory and no prior context picks the right skill by itself. Each of fourteen fresh Sonnet agents was given only what a plugin host injects (the fourteen skill names and descriptions, and where the files live) plus one user prompt, and was left to decide whether to open a skill. Output folders were named t01 to t14 so nothing hinted at the expected skill. Answers were graded against the same assertions as the eval cases.
+
+| Test | Skill expected | Case | Opened it unprompted | Reference files read | Assertions |
+|---|---|---|---|---|---|
+| t01 | `brainbase-platform` | platform-start-thread-over-api | yes | 1 | 5/5 |
+| t02 | `brainbase-cli` | cli-publish-agent-from-ci | yes | 3 | 6/6 |
+| t03 | `brainbase-llm-gateway` | llm-switch-model-mid-task | yes | 1 | 5/5 |
+| t04 | `brainbase-sandboxes` | sandbox-providers-and-machines | yes | 2 | 4/4 |
+| t05 | `brainbase-orchestration` | orch-two-agent-handoff-manifest | yes | 2 | 5/5 |
+| t06 | `brainbase-surfaces` | surface-connect-slack-from-ci | yes | 1 | 5/5 |
+| t07 | `brainbase-interfaces` | interface-build-and-publish | yes | 0 | 6/6 |
+| t08 | `brainbase-benchmarks` | bench-suite-from-csv | yes | 2 | 5/5 |
+| t09 | `brainbase-evals` | evals-policy-check-manifest | yes | 1 | 6/6 |
+| t10 | `brainbase-permissions` | perm-ci-token-scope | yes | 2 | 5/5 |
+| t11 | `brainbase-tools` | tools-add-remote-mcp | yes | 1 | 5/5 |
+| t12 | `brainbase-skills` | skills-install-registry-skill | yes | 1 | 6/6 |
+| t13 | `brainbase-memory` | memory-customer-context-table | yes | 1 | 5/5 |
+| t14 | `brainbase-payments` | pay-auto-topup-credits | yes | 2 | 5/5 |
+
+Every agent opened exactly the expected skill and no other, most went on to the reference file the skill pointed at, and the graders found no factually wrong statement in any answer. This is a host simulation rather than a real plugin load: a true end-to-end run is `claude -p "<prompt>" --plugin-dir /path/to/brainbase-plugin` from an empty directory, which needs a logged-in `claude` CLI.
