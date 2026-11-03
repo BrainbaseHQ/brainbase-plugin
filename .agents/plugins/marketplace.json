@@ -1,0 +1,20 @@
+{
+  "name": "brainbase-plugin",
+  "interface": {
+    "displayName": "Brainbase"
+  },
+  "plugins": [
+    {
+      "name": "brainbase",
+      "source": {
+        "source": "local",
+        "path": "."
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

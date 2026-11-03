@@ -1,0 +1,41 @@
+{
+  "name": "brainbase-plugin",
+  "description": "Brainbase plugins for Claude Code: platform skills and the Brainbase MCP.",
+  "owner": {
+    "name": "Brainbase Labs",
+    "url": "https://brainbaselabs.com"
+  },
+  "metadata": {
+    "description": "Official Brainbase plugin marketplace",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "brainbase",
+      "displayName": "Brainbase",
+      "description": "Skills for building and operating agents on Brainbase: the CLI, models and the LLM gateway, sandboxes, orchestration, surfaces, interfaces, benchmarks, evals, permissions, tools, skills, memory, and payments.",
+      "author": {
+        "name": "Brainbase Labs"
+      },
+      "category": "development",
+      "homepage": "https://docs.brainbaselabs.com",
+      "tags": ["brainbase", "agents", "cli", "orchestrations", "evals", "benchmarks"],
+      "source": "./"
+    },
+    {
+      "name": "brainbase-mcp",
+      "displayName": "Brainbase MCP",
+      "description": "Build, test, deploy, and monitor Brainbase managed agents through the official Brainbase MCP.",
+      "author": {
+        "name": "Brainbase Labs"
+      },
+      "category": "development",
+      "homepage": "https://docs.brainbaselabs.com/docs/mcp",
+      "tags": ["brainbase", "mcp", "agents"],
+      "source": {
+        "source": "github",
+        "repo": "BrainbaseHQ/brainbase-mcp"
+      }
+    }
+  ]
+}
