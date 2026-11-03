@@ -117,10 +117,10 @@ Skills open on their own when your request matches. To call one directly, type `
 
 ### Codex
 
-Codex reads the same skills from its personal skills folder. Download **[`brainbase-skills.zip`](https://github.com/BrainbaseHQ/brainbase-plugin/releases/latest/download/brainbase-skills.zip)** and unzip it there:
+Codex reads the same skills from its personal skills folder. Download **[`brainbase-all-skills.zip`](https://github.com/BrainbaseHQ/brainbase-plugin/releases/latest/download/brainbase-all-skills.zip)** and unzip it there:
 
 ```bash
-mkdir -p ~/.agents/skills && unzip brainbase-skills.zip -d ~/.agents/skills/
+mkdir -p ~/.agents/skills && unzip brainbase-all-skills.zip -d ~/.agents/skills/
 ```
 
 In the Codex CLI or IDE extension, type `$brainbase-cli` (or any other skill name) to use one directly, or run `/skills` to find them. If they don't appear, restart Codex. See [Codex skills](https://developers.openai.com/codex/skills). The repo also carries a `.codex-plugin/plugin.json` manifest, so it can be listed in a Codex plugin marketplace you configure.
@@ -141,10 +141,10 @@ Skills need code execution, which you can turn on in **Settings > Capabilities**
 
 ### Cursor
 
-Download **[`brainbase-skills.zip`](https://github.com/BrainbaseHQ/brainbase-plugin/releases/latest/download/brainbase-skills.zip)**, then unzip it into your personal skills folder:
+Download **[`brainbase-all-skills.zip`](https://github.com/BrainbaseHQ/brainbase-plugin/releases/latest/download/brainbase-all-skills.zip)**, then unzip it into your personal skills folder:
 
 ```bash
-mkdir -p ~/.cursor/skills && unzip brainbase-skills.zip -d ~/.cursor/skills/
+mkdir -p ~/.cursor/skills && unzip brainbase-all-skills.zip -d ~/.cursor/skills/
 ```
 
 In Agent chat, type `/` and search for `brainbase` to use a skill directly. See [Cursor skills](https://cursor.com/docs/skills).
@@ -154,7 +154,7 @@ In Agent chat, type `/` and search for `brainbase` to use a skill directly. See 
 Download the same zip, then unzip it into your tool's personal skills folder. For example, for Gemini CLI:
 
 ```bash
-mkdir -p ~/.gemini/skills && unzip brainbase-skills.zip -d ~/.gemini/skills/
+mkdir -p ~/.gemini/skills && unzip brainbase-all-skills.zip -d ~/.gemini/skills/
 ```
 
 | Tool | Skills folder | How to use it |
@@ -212,9 +212,9 @@ If someone gave you this repo's link and asked you to install the plugin or its 
      set -e
      SKILLS_DIR="$HOME/.agents/skills"  # replace with your tool's folder from step 1
      mkdir -p "$SKILLS_DIR"
-     TMP_DIR="$(mktemp -d "$SKILLS_DIR/.brainbase-skills.XXXXXX")"
+     TMP_DIR="$(mktemp -d "$SKILLS_DIR/.brainbase-all-skills.XXXXXX")"
      trap 'rm -rf "$TMP_DIR"' EXIT
-     curl -fsSL "https://github.com/BrainbaseHQ/brainbase-plugin/releases/latest/download/brainbase-skills.zip" -o "$TMP_DIR/skills.zip"
+     curl -fsSL "https://github.com/BrainbaseHQ/brainbase-plugin/releases/latest/download/brainbase-all-skills.zip" -o "$TMP_DIR/skills.zip"
      unzip -q "$TMP_DIR/skills.zip" -d "$TMP_DIR/unpacked"
      test -f "$TMP_DIR/unpacked/brainbase-platform/SKILL.md"
      for dir in "$TMP_DIR"/unpacked/brainbase-*/; do
