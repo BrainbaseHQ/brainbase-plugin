@@ -41,7 +41,7 @@ The docs mirror this skill was written from is a snapshot (2026-11-03). Fetch th
 - **Destructive CLI verbs ask first.** `skill remove`, and `skill add` when it would overwrite an existing skill, prompt in a terminal and refuse without `--yes` when there is none. Confirm with the user before removing a skill or overwriting one.
 - **Publishing is public-facing.** `skill publish` makes a `SKILL.md` folder available under `creator/slug` with a visibility of `public`, `unlisted` or `private`. Confirm the name, version and visibility with the user before publishing; a published version cannot be un-published through anything the docs describe.
 - **A manifest push replaces the agent's component list.** `PUT /v2/cli/agents/{agent_id}/manifest` (what `agent push` calls) is a whole-manifest replacement: components absent from the manifest are unlinked or archived. Run `brainbase agent status` and read what will change before pushing a `skills:` edit.
-- **Skill contents are never frozen.** A version pin or `task create --version` freezes *which* skills are installed; each task installs those skills at their current contents. Pin the skill's version in the source string if the contents must not move.
+- **An agent-version pin does not freeze skill contents; a source-string pin does.** `brainbase agent versions pin` or `task create --version` freezes *which* skills are installed, and each task then installs those skills at their current contents. Pinning the registry version in the source string (`registry:creator/slug@1.4.0`) freezes the contents too: an exact pin always installs that published version.
 - **Credits and secrets.** The docs describe no charge for installing, updating or publishing a skill; the tasks that use them spend credits as usual (`brainbase-payments`). Never put a token in a skill folder you publish; `bbpat_…` and `bb_live_…` values belong in `BRAINBASE_TOKEN` or agent secrets.
 
 ## Concepts
@@ -155,7 +155,7 @@ brainbase skill info acme/pdf-extract
 
 1. Edit the source string in `skills:`: add `@1.4.0` to pin, change it to move, remove it to track latest.
 2. `brainbase agent status` shows the skill entry as modified; `brainbase agent push` applies it.
-3. To freeze the whole agent definition instead, use `brainbase agent versions pin <version>`; remember a pin freezes which skills are installed, not their contents.
+3. To freeze the whole agent definition instead, use `brainbase agent versions pin <version>`; remember an agent-version pin freezes which skills are installed, not their contents; only a source-string pin freezes contents.
 
 ### 7. Diagnose "the agent cannot find its skill"
 

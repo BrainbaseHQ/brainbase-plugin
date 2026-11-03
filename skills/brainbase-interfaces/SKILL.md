@@ -29,7 +29,7 @@ The nouns: an interface has an **address** (its URL), an **audience** (who can o
 ## Operating rules
 
 - Check the harness first. Only agents on Kafka (`kafka_cloud`), Claude Code (`claude_code`), Codex (`codex`), Qwen Code (`qwen`) and OpenCode (`opencode`) can build dashboards. The legacy kafka (KLS-hosted) runtime has no sandbox to run the build tools in, and Cursor, Factory and Qoder cannot either; on those agents the tab says the harness cannot call the interface tools, **Build in chat** and **Start building** stay unavailable, and `brainbase interface build` cannot run.
-- Set the audience before the first publish. Publishing with no audience is refused, and a published dashboard opens only for the audience, so the user should include themselves. **Only chosen people** starts with nobody chosen.
+- Whenever you set or report an audience, name both choices, **Everyone in the organisation** or **Only chosen people** (up to 2,000, who also need agent access), so the user picks knowingly. Set the audience before the first publish. Publishing with no audience is refused, and a published dashboard opens only for the audience, so the user should include themselves. **Only chosen people** starts with nobody chosen.
 - A build conversation is a task on the agent (it appears in the agent's chat view and Tasks list, marked with a small **i**), so starting one runs the agent on its sandbox and model like any other task. Confirm before starting builds the user did not ask for; `brainbase-payments` covers what a task spends.
 - Publish, roll back, audience changes, address changes and archive all change what viewers see or who can see it. Confirm with the user first. The CLI asks before each of these and needs `--yes` (`-y`) when there is no terminal, including under `--json`.
 - Build and publish are two messages. The agent publishes only when the message asking for it asks for nothing else, and only when that is the user's own latest message. A combined "change X and publish" gets the build and a report, then waits for the user to look and say publish.
@@ -68,7 +68,7 @@ The nouns: an interface has an **address** (its URL), an **audience** (who can o
 Console:
 1. Open the agent's **Interfaces** tab and choose **New interface**.
 2. Describe what the dashboard should show. **Name** is optional: left empty, a short descriptive title is generated at **Start building** (or it starts as **New interface** when naming is unavailable); a name you enter yourself is kept.
-3. Choose **Who can open it**, then **Start building**. That creates the interface on the agent, opens its screen and sends the description as the first message.
+3. Choose **Who can open it**: **Everyone in the organisation**, or **Only chosen people** (up to 2,000 named people, each of whom also needs access to the agent). Then **Start building**. That creates the interface on the agent, opens its screen and sends the description as the first message.
 
 CLI (set the audience in the same command, because a new interface opens for nobody):
 ```bash

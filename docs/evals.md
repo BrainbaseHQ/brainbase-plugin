@@ -69,4 +69,16 @@ What the numbers mean:
 - **One factual slip with the skill**, uncaught by any assertion: the skills-install answer said a version pin in a `registry:` source string does not freeze contents. The skill says it does (the caveat applies to agent-version pins).
 - **Cost of the skill** is about 15k tokens per run, which is SKILL.md plus one reference file, and no extra time.
 
-The assertion texts above were refined after this run on grader feedback (four tightened, two added), so a re-run scores against slightly stricter graders than the numbers here.
+The assertion texts above were refined after this run on grader feedback (four tightened, three added), so a re-run scores against slightly stricter graders than the numbers here.
+
+## Iteration 2 (2026-11-03): fixing the three gaps
+
+Three skill edits, each re-run on its case with the same executor and graded against the current assertions (the iteration-1 answer regraded alongside as the baseline):
+
+| Case | Skill change | Old answer | New answer |
+|---|---|---|---|
+| interface-build-and-publish | Workflow 2 and the operating rules now name both audience choices wherever an audience is set | 5/6 | 6/6 |
+| orch-event-trigger-and-sharing | Workflow 5 opens by naming the three trigger kinds and which are console-only | 4/4 | 4/4 |
+| skills-install-registry-skill | The pinning rule now says which pin freezes what: a source-string pin freezes contents, an agent-version pin does not | 5/6 | 6/6 |
+
+The old skills-install answer held the only factually wrong sentence found across the whole benchmark (it said a `@1.2.3` source pin does not freeze contents). The reworded rule removes the ambiguity, and a new assertion now checks it.

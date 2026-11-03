@@ -94,9 +94,10 @@ It lives in three places. The console has an orchestration canvas (members, edge
 
 ### 5. Start from an app event or a webhook
 
-1. On the canvas add a connected-app trigger (for example Linear issue updates) and wire it to the first-step agent. App triggers have three modes, **Off**, **Test** (events go to the test webhook) and **Live**; schedule triggers have **Off** and **Live**. Test with a low-risk event, then set **Live**.
-2. Webhook trigger (changelog, 2026-10-30): adding one gives the orchestration a unique URL; posting JSON to it starts a run with no app connection. Send an `Idempotency-Key` header so a retry does not start a duplicate; the same payload sent again after 24 hours starts a new run (changelog, 2026-10-29). Toggle it on and off from the canvas.
-3. Keep payloads small and pass only what downstream agents need. The CLI shows app triggers after a pull but cannot create or edit them; the connected account behind a trigger can be disconnected and reconnected without losing the setup (changelog, 2026-08-21).
+1. Triggers come in three kinds: **schedule** (cron, UTC; the only kind the CLI manifest reconciles), **app event** (a connected app such as Linear or GitHub) and **webhook** (a URL you post to). Say which kind the user needs; the last two are console-only.
+2. On the canvas add a connected-app trigger (for example Linear issue updates) and wire it to the first-step agent. App triggers have three modes, **Off**, **Test** (events go to the test webhook) and **Live**; schedule triggers have **Off** and **Live**. Test with a low-risk event, then set **Live**.
+3. Webhook trigger (changelog, 2026-10-30): adding one gives the orchestration a unique URL; posting JSON to it starts a run with no app connection. Send an `Idempotency-Key` header so a retry does not start a duplicate; the same payload sent again after 24 hours starts a new run (changelog, 2026-10-29). Toggle it on and off from the canvas.
+4. Keep payloads small and pass only what downstream agents need. The CLI shows app triggers after a pull but cannot create or edit them; the connected account behind a trigger can be disconnected and reconnected without losing the setup (changelog, 2026-08-21).
 
 ### 6. Share a secret, an MCP server or memory across members
 
