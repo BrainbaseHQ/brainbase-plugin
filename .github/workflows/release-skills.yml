@@ -1,0 +1,51 @@
+name: Publish skill zips
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - skills/**
+      - LICENSE
+      - .github/workflows/release-skills.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# A newer push cancels an older run, so an older zip can't overwrite a newer one.
+concurrency:
+  group: skills-zip
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # One zip with every skill folder at the top level (unzip it straight into a
+      # skills folder), plus one zip per skill whose top folder matches the skill
+      # name (what Claude's skill upload expects). Eval cases stay out of the zips.
+      - name: Build zips
+        run: |
+          set -eu
+          mkdir -p dist/all
+          for dir in skills/*/; do
+            name=$(basename "$dir")
+            mkdir -p "dist/all/$name"
+            cp "$dir/SKILL.md" "dist/all/$name/"
+            [ -d "$dir/references" ] && cp -R "$dir/references" "dist/all/$name/"
+            cp LICENSE "dist/all/$name/"
+            (cd dist/all && zip -qr "../$name.zip" "$name")
+          done
+          (cd dist/all && zip -qr ../brainbase-skills.zip .)
+          ls -la dist/*.zip
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view skills-zip > /dev/null 2>&1 || gh release create skills-zip \
+            --title "Brainbase skills (zip)" \
+            --notes "Latest skill zips, rebuilt whenever a skill changes on main. brainbase-skills.zip holds all fourteen skills (unzip it into your agent's skills folder); the brainbase-<topic>.zip files are single skills for Claude's Customize > Skills upload. Don't use the Source code archives below: they aren't packaged as skills."
+          gh release upload skills-zip dist/*.zip --clobber
