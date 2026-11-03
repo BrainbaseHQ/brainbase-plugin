@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: platform-start-thread-over-api
+expected_outcome: |
+  Uses POST /v2/threads with an inline agent spec, shows the follow-up input call with input_id and expected_generation, names the events stream endpoint and the Authorization header; does not invent endpoints.

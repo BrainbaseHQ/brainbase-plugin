@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: sandbox-gpu-cost-and-files
+expected_outcome: |
+  Uses machine_kind and machine_size, names the GPU provider and documented hourly price in credits, and describes the task files / shared files transfer APIs with the 1 GiB limit.

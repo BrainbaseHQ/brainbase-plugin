@@ -68,6 +68,10 @@ Aim for 150–300 lines. Use this order and drop a section only when it would be
 - Condense rather than paste: keep every command, flag, endpoint, field, limit, price, error code and table; drop UI chrome, images and repeated marketing sentences.
 - Keep the docs' tables as tables and the docs' code blocks as code blocks.
 
+## Eval cases
+
+Each skill carries `evals/<case>/` folders in the layout `claude plugin eval` reads: `prompt.md` (a settings block, then the user's message), `case.yaml` (the expected outcome) and `graders/NN-*.md` (one verifiable assertion each). Write prompts the way a real user would, including ones that never say "Brainbase" but are clearly on the platform, and write assertions about facts the docs settle (an endpoint, a flag, a limit, a rule) rather than about tone. When a docs refresh moves a fact, update the assertion in the same change. `docs/evals.md` records the latest with-skill versus without-skill benchmark.
+
 ## Validation
 
 ```bash

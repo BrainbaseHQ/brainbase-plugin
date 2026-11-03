@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: interface-build-and-publish
+expected_outcome: |
+  Lists harnesses that can build interfaces (kafka_cloud, Claude Code, Codex, Qwen Code, OpenCode), explains building in a conversation, preview, the two-messages publish rule, audience of everyone or up to 2,000 chosen people, and PUT /v2/interfaces/{interface_id}/address.

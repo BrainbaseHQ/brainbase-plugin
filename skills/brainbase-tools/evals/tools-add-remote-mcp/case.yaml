@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: tools-add-remote-mcp
+expected_outcome: |
+  Writes an mcp block with a remote server and a ${NAME} secret reference, notes the public-HTTPS rule, and uses brainbase mcp list|connect|check.

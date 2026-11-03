@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: orch-two-agent-handoff-manifest
+expected_outcome: |
+  Produces a manifest with two members, a described edge, and a schedule trigger with a cron expression; explains the create_task_for_<recipient> tool the sender gets, and names the CLI command to publish.

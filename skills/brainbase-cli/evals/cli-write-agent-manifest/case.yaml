@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: cli-write-agent-manifest
+expected_outcome: |
+  Produces a valid manifest using the documented keys (name, harness: claude_code, secrets, machine_size, capabilities.memory: false), does not invent keys, and names brainbase agent push.

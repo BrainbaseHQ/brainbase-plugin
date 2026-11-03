@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: memory-customer-context-table
+expected_outcome: |
+  Covers capabilities.memory in the manifest, creating a table in the console Memory area, and the memory_tables / memory_schema / memory_sql tools.

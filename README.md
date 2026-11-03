@@ -88,6 +88,14 @@ claude plugin validate .
 
 When the docs change, update the matching reference file, bump its `Snapshot:` date, and adjust `SKILL.md` if a workflow or limit moved. Keep skill names stable; hosts namespace and link to them.
 
+Each skill ships two eval cases under `skills/<name>/evals/<case>/` (a prompt, the expected outcome and one grader file per assertion). They run with and without the skill through Claude Code's plugin evals, which are real, billed model runs:
+
+```bash
+claude plugin eval skills/brainbase-cli --allow-tools Write
+```
+
+See [docs/evals.md](docs/evals.md) for the cases, the assertions and the latest benchmark.
+
 ## License
 
 MIT. See [LICENSE](LICENSE).

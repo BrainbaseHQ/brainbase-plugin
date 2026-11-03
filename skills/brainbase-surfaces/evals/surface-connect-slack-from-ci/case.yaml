@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: surface-connect-slack-from-ci
+expected_outcome: |
+  Shows brainbase agent connect / connections, says that Slack connection needs a login session rather than a PAT, and lists Slack capabilities such as progress updates, stop, approvals and coding tasks.

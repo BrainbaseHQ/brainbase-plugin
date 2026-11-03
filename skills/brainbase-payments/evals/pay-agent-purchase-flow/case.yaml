@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: pay-agent-purchase-flow
+expected_outcome: |
+  Says Payments is beta, describes the agent request, approval or decline in Link by the wallet owner, the outcome returning to the task, the Payments page and Cancel / Recover request.

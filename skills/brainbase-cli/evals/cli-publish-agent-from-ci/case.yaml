@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: cli-publish-agent-from-ci
+expected_outcome: |
+  Gives the npm install command, uses BRAINBASE_TOKEN with a PAT, the agent init/create/push loop, task create --wait, the --yes/--json flags for non-interactive use, and mentions exit codes.

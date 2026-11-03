@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: evals-policy-check-manifest
+expected_outcome: |
+  Produces an evals block with a judge check in the manifest, explains verdict statuses and where to read them (brainbase agent eval list|runs, the /v2/agents/{agent_id}/evals API), and says judges consume credits.

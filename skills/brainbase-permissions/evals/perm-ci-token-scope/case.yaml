@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: perm-ci-token-scope
+expected_outcome: |
+  Names the publish scope on a personal access token (bbpat_), shows brainbase token create, contrasts read/publish/admin, and names credential_scope_denied as the error.

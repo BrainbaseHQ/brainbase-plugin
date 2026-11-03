@@ -12,6 +12,7 @@ Thanks for helping keep these skills accurate.
    claude plugin validate .
    ```
 
-5. Bump `version` in `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json` together, and add a line to `CHANGELOG.md`.
+5. If a change alters what a skill teaches, re-run that skill's eval cases (`claude plugin eval skills/<name> --allow-tools Write`; these are billed model runs) and update the case's `case.yaml` or graders when the expected answer moves. See [docs/evals.md](docs/evals.md).
+6. Bump `version` in `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json` together, and add a line to `CHANGELOG.md`.
 
 Pull request titles follow Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`).

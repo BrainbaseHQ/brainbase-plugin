@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: perm-ask-rule-who-answers
+expected_outcome: |
+  Explains Allow/Ask/Deny per connected-app operation, who may answer an Ask, and the owner/admin/member/agent manager roles.

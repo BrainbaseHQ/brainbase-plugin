@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: skills-publish-to-registry
+expected_outcome: |
+  Shows brainbase skill publish and the required SKILL.md frontmatter, and gives the skill-vs-instructions-vs-playbook guidance.

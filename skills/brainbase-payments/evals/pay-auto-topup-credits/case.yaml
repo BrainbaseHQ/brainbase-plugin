@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: pay-auto-topup-credits
+expected_outcome: |
+  States 1 credit = $0.01, explains auto top-up with threshold and reload amount, project spend limits, and lists what consumes credits (model calls, sandbox and GPU time, eval judges, meetings).

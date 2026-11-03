@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: surface-github-pr-reviews
+expected_outcome: |
+  Describes connecting the GitHub surface, PR review and @mention behaviour, that the agent can push to branches, and the console or CLI steps involved.

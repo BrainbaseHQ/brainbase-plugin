@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: llm-switch-model-mid-task
+expected_outcome: |
+  Shows PATCH /v2/tasks/{task_id} and brainbase task update --model, explains auto and auto:open routing, and uses real model IDs from the catalog rather than invented ones.
