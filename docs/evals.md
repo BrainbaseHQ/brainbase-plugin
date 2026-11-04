@@ -105,3 +105,28 @@ The eval runs above hand the model the skill's path. This test checks the other 
 | t14 | `brainbase-payments` | pay-auto-topup-credits | yes | 2 | 5/5 |
 
 Every agent opened exactly the expected skill and no other, most went on to the reference file the skill pointed at, and the graders found no factually wrong statement in any answer. This is a host simulation rather than a real plugin load: a true end-to-end run is `claude -p "<prompt>" --plugin-dir /path/to/brainbase-plugin` from an empty directory, which needs a logged-in `claude` CLI.
+
+## End-to-end plugin test, headless Claude Code (2026-11-03)
+
+The real thing: one fresh `claude -p` process per primitive with the plugin loaded through `--plugin-dir`, started in an empty folder (no memory, no project settings), on Sonnet with read-only tools (`Read, Glob, Grep, Skill, WebFetch, WebSearch`), the same fourteen prompts as the host-simulation test, graded against the same assertions. "Invoked" means the host's own Skill tool was called with `brainbase:<skill>`, read from the stream-json transcript.
+
+| Skill | Invoked via Skill tool, unprompted | Reference files read | Turns | Seconds | Assertions |
+|---|---|---|---|---|---|
+| `brainbase-platform` | yes | 0 | 3 | 19 | 5/5 |
+| `brainbase-cli` | yes | 0 | 3 | 18 | 6/6 |
+| `brainbase-llm-gateway` | yes | 0 | 3 | 13 | 5/5 |
+| `brainbase-sandboxes` | yes | 0 | 3 | 15 | 4/4 |
+| `brainbase-orchestration` | yes | 2 | 7 | 34 | 5/5 |
+| `brainbase-surfaces` | yes | 2 | 5 | 23 | 5/5 |
+| `brainbase-interfaces` | yes | 0 | 3 | 13 | 6/6 |
+| `brainbase-benchmarks` | yes | 1 | 7 | 17 | 4/5 |
+| `brainbase-evals` | yes | 0 | 6 | 20 | 6/6 |
+| `brainbase-permissions` | yes | 0 | 3 | 15 | 5/5 |
+| `brainbase-tools` | yes | 1 | 6 | 21 | 5/5 |
+| `brainbase-skills` | yes | 2 | 12 | 31 | 5/6 |
+| `brainbase-memory` | yes | 0 | 5 | 32 | 5/5 |
+| `brainbase-payments` | yes | 1 | 4 | 15 | 5/5 |
+
+Total: 71/73 assertions, invoked 14/14, about $2.89 for the batch. The graders found no factually wrong statement in any answer. The two misses are judgment calls rather than errors: the skills answer declined to recommend `brainbase agent push` from an unlinked, empty folder (the skill itself says to run `agent status` first), and the benchmarks answer pointed at the CLI rather than the console or API import route.
+
+To repeat it, see `docs/fresh-agent-test/`: `run_headless.sh <skill> "<prompt>"` runs one, `run_all_headless.py` runs the batch five at a time, and `prompts.tsv` holds the prompts. It needs a logged-in `claude` CLI (`claude auth login`).
