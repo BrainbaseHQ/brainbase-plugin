@@ -65,7 +65,7 @@ The agent sees one MCP server named `brainbase-apps`. The name is reserved: on a
 
 | Tool | What it does |
 | --- | --- |
-| `list_apps` | Lists the agent's apps and connected accounts. Shows connected apps by default; pass `include: "all"` to list every app. |
+| `list_apps` | Lists the agent's apps and connected accounts. Shows connected apps by default; set `include: "all"` to list every app. |
 | `search_actions` | Searches one app's actions, including custom actions you have added. |
 | `get_action` | Returns an action's fields and which accounts can run it. |
 | `configure_prop` | Looks up the choices for one field, such as a list of channels or spreadsheets. |
@@ -194,7 +194,7 @@ By default, successful result data over 32 KiB is written as JSON to `/workspace
 }
 ```
 
-The agent reads the file, or processes it with a script, without loading every row into context. To keep results small, pass `output` to `run_action`: within the action's `ret` result, `fields` selects the listed paths and `filter` keeps matching items when `ret` is a list (a filter tests whether the value at a path `equals` or `contains` a value). These do not shrink `exports` or `summary`. `max_inline_bytes` sets the inline limit for one call, up to 256 KiB.
+The agent reads the file, or processes it with a script, without loading every row into context. To keep results small, set `output` on `run_action`: within the action's `ret` result, `fields` selects the listed paths and `filter` keeps matching items when `ret` is a list (a filter tests whether the value at a path `equals` or `contains` a value). These do not shrink `exports` or `summary`. `max_inline_bytes` sets the inline limit for one call, up to 256 KiB.
 
 ## 11. The `bb-apps` command
 

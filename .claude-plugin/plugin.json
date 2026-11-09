@@ -1,6 +1,6 @@
 {
   "name": "brainbase",
-  "displayName": "Brainbase",
+  "displayName": "Brainbase Skills",
   "version": "0.1.0",
   "description": "Skills for building and operating agents on Brainbase: the CLI, models and the LLM gateway, sandboxes, orchestration, surfaces, interfaces, benchmarks, evals, permissions, tools, skills, memory, and payments.",
   "author": {

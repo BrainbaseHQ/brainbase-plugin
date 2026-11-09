@@ -106,7 +106,9 @@ Using a secret for a private repository:
 ```bash
 set -euo pipefail
 
-git clone "https://oauth2:${GITHUB_TOKEN}@github.com/acme/private-repo.git" repo
+# GitHub's git endpoint takes the token as Basic auth (user x-access-token), not Bearer.
+git -c http.extraHeader="Authorization: Basic $(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 | tr -d '\n')" \
+    clone https://github.com/acme/private-repo.git repo
 cd repo
 npm ci
 ```

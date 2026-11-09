@@ -32,7 +32,7 @@ Token-gated vs public: on `api.brainbaselabs.com` a branded `*.brainbaselabs.spa
 
 ## 2. Preview rules and errors
 
-- Default port is 8000 unless the provider uses another; pass `port` for anything else.
+- Default port is 8000 unless the provider uses another; set `port` for anything else.
 - Minting a branded link does not wake the machine; on other deployments it resumes a sleeping machine first (a few seconds on a cold sandbox). The probe always resumes the machine. Opening the link resumes it.
 - A link is minted whether or not anything listens; use the probe before opening.
 - `422` `interface_preview_only` (preview): port 8000 serves an interface's unpublished dashboard; open `detail.preview_url` instead.

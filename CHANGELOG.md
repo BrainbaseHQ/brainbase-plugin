@@ -4,6 +4,7 @@
 
 ### Changed
 
+- Marketplace review fixes: the private-repo clone example in `brainbase-sandboxes` sends the token in a `git -c http.extraHeader` header instead of embedding it in the URL; the orchestration MCP host override is described with a plain `<thread_id>` placeholder; the plugin's display name is "Brainbase Skills" to keep it apart from the "Brainbase MCP" plugin; the fresh-agent test prompts live in `prompts.txt`; a few sentences no longer read as a password-manager command.
 - `brainbase-interfaces` names both audience choices wherever an audience is set; `brainbase-orchestration` opens its trigger workflow with the three trigger kinds; `brainbase-skills` states which pin freezes skill contents (a source-string pin does, an agent-version pin does not). Found by the iteration-1 evals and confirmed fixed in iteration 2.
 
 ### Added
