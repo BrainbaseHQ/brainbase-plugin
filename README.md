@@ -288,6 +288,19 @@ The same marketplace lists [`brainbase-mcp`](https://github.com/BrainbaseHQ/brai
 /plugin install brainbase-mcp@brainbase-plugin
 ```
 
+## Network and data
+
+The plugin is documentation only: Markdown skills and their reference files. It ships no MCP server, no hooks and no scripts that run on install or at load time, so the plugin itself reads nothing from your machine, sends nothing and stores nothing. Following a skill, your agent may run commands or requests on your behalf, with your own Brainbase credentials, to these services:
+
+| Service | Hosts | What goes there |
+| --- | --- | --- |
+| Brainbase platform (the vendor of this plugin) | `api.brainbaselabs.com`, `api.v1.brainbaselabs.com`, `app.brainbaselabs.com` | API calls the skills document (agents, tasks, evals, orchestrations, machines, tokens), made with your `BRAINBASE_API_KEY` or `BRAINBASE_TOKEN`. Anything you create there is your workspace data, kept under Brainbase's [privacy policy](https://brainbaselabs.com/privacy) until you delete it. |
+| Brainbase docs | `docs.brainbaselabs.com` | Plain page fetches when a skill asks the agent to check a live docs page. No credentials. |
+| Brainbase built-in MCP servers | `brainbase-*-mcp.onrender.com`, `meeting.mcp.brainbaselabs.com` | Reached only from inside a Brainbase sandbox by the agent running there, with the task's own token. The skills describe them; nothing on your machine connects to them. |
+| GitHub | `github.com` | The release zip in the install instructions above, and `git clone` examples that use your own `GITHUB_TOKEN` for your own private repositories. |
+
+Third-party hosts named in the skills (`api.githubcopilot.com`, `gitlab.com`, vendor documentation sites) appear only as examples of what you might configure on your own agent. The skills tell the agent never to ask for, print or write credential values, and to reference them by environment variable name instead.
+
 ## How the skills stay honest
 
 - Every reference file names the docs pages it condenses (`Source:` lines) and the date of the snapshot it was written from (`Snapshot:`).
