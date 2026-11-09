@@ -288,6 +288,19 @@ The same marketplace lists [`brainbase-mcp`](https://github.com/BrainbaseHQ/brai
 /plugin install brainbase-mcp@brainbase-plugin
 ```
 
+## Network and data
+
+The plugin is documentation only: Markdown skills and their reference files. It ships no MCP server, no hooks and no scripts that run on install or at load time, so the plugin itself reads nothing from your machine, sends nothing and stores nothing. Following a skill, your agent may run commands or requests on your behalf, with your own Brainbase credentials, to these services:
+
+| Service | Hosts | What goes there |
+| --- | --- | --- |
+| Brainbase platform (the vendor of this plugin) | `api.brainbaselabs.com`, `api.v1.brainbaselabs.com`, `app.brainbaselabs.com` | API calls the skills document (agents, tasks, evals, orchestrations, machines, tokens), made with your `BRAINBASE_API_KEY` or `BRAINBASE_TOKEN`. Anything you create there is your workspace data, held under Brainbase's [privacy policy](https://brainbaselabs.com/privacy); how long depends on the data and your plan (task data and traces are kept 7 days on Free, 30 days on Team, custom on Enterprise; agents and their configuration stay until you delete them). |
+| Brainbase docs | `docs.brainbaselabs.com` | Plain page fetches when a skill asks the agent to check a live docs page. No credentials. |
+| Brainbase built-in MCP servers | `brainbase-*-mcp.onrender.com`, `meeting.mcp.brainbaselabs.com` | Reached from inside a Brainbase sandbox by the agent running there, and also from your own machine: `brainbase agent pull`, `unpack` and `sync` write the built-in entries into the local harness config (`.mcp.json` or `~/.claude.json`, `~/.codex/config.toml`, `.kafka/kafka.json`), so a harness opened in that folder connects to them with the agent's `BRAINBASE_TOKEN` and sends it tool calls (memory rows, browser actions, connector requests). The standalone-integrations workflow also has your own code call `brainbase-pipedream-mcp.onrender.com` with a short-lived access grant (`bbig_…`). |
+| GitHub and other git hosts | `github.com`, `gitlab.com`, any git host you name | The release zip in the install instructions above; `brainbase skill add <git url>` downloads a skill from whatever repository you point it at; `git clone` examples that use your own `GITHUB_TOKEN` for your own private repositories. |
+
+Other third-party hosts named in the skills (`api.githubcopilot.com`, vendor documentation sites) appear only as examples of what you might configure on your own agent. The skills tell the agent never to ask for, print or write credential values, and to reference them by environment variable name instead.
+
 ## How the skills stay honest
 
 - Every reference file names the docs pages it condenses (`Source:` lines) and the date of the snapshot it was written from (`Snapshot:`).
