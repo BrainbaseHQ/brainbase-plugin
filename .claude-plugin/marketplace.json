@@ -12,7 +12,7 @@
   "plugins": [
     {
       "name": "brainbase",
-      "displayName": "Brainbase",
+      "displayName": "Brainbase Skills",
       "description": "Skills for building and operating agents on Brainbase: the CLI, models and the LLM gateway, sandboxes, orchestration, surfaces, interfaces, benchmarks, evals, permissions, tools, skills, memory, and payments.",
       "author": {
         "name": "Brainbase Labs"

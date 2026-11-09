@@ -106,7 +106,8 @@ Using a secret for a private repository:
 ```bash
 set -euo pipefail
 
-git clone "https://oauth2:${GITHUB_TOKEN}@github.com/acme/private-repo.git" repo
+git -c http.extraHeader="Authorization: Bearer ${GITHUB_TOKEN}" \
+    clone https://github.com/acme/private-repo.git repo
 cd repo
 npm ci
 ```

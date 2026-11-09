@@ -21,7 +21,7 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Brainbase",
+    "displayName": "Brainbase Skills",
     "shortDescription": "Build and operate agents on Brainbase",
     "longDescription": "Brainbase platform skills for coding agents. Each skill covers one area of the platform, grounded in the public docs: the brainbase CLI, models and the LLM gateway, sandboxes, orchestrations, surfaces, interfaces, benchmarks, evals, permissions, tools and MCP, skills, memory, and payments.",
     "developerName": "Brainbase Labs",

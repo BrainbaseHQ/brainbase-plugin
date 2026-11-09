@@ -129,4 +129,4 @@ The real thing: one fresh `claude -p` process per primitive with the plugin load
 
 Total: 71/73 assertions, invoked 14/14, about $2.89 for the batch. The graders found no factually wrong statement in any answer. The two misses are judgment calls rather than errors: the skills answer declined to recommend `brainbase agent push` from an unlinked, empty folder (the skill itself says to run `agent status` first), and the benchmarks answer pointed at the CLI rather than the console or API import route.
 
-To repeat it, see `docs/fresh-agent-test/`: `run_headless.sh <skill> "<prompt>"` runs one, `run_all_headless.py` runs the batch five at a time, and `prompts.tsv` holds the prompts. It needs a logged-in `claude` CLI (`claude auth login`).
+To repeat it, see `docs/fresh-agent-test/`: `run_headless.sh <skill> "<prompt>"` runs one, `run_all_headless.py` runs the batch five at a time, and `prompts.txt` holds the prompts (one tab-separated `skill<TAB>prompt` line each). It needs a logged-in `claude` CLI (`claude auth login`).

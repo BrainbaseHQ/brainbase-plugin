@@ -9,7 +9,7 @@ Contents: The orchestration MCP and handoffs · Cloudflare file handoffs · Orch
 
 Every member's harness is installed with the orchestration built-in MCP (always installed, unlike memory and browser which an agent can turn off). It exposes one `create_task_for_<recipient>` tool per outgoing edge; the edge `description` tells the source agent what context to pass forward. Calling the tool starts a task on the recipient, authorized by the agent-bound credential planted in the source's sandbox, which reaches "that agent, plus orchestration peers it has an edge to". Orchestration connections can expose multiple dispatch tools to the source agent and run in both directions, drawn as parallel lanes on the canvas (changelog, 2026-06-19), so a two-way handoff is two edges.
 
-Host override: `BRAINBASE_ORCHESTRATION_MCP_URL` (default `https://brainbase-orchestration-mcp.onrender.com`), a base origin to which the CLI appends `/t/${BRAINBASE_THREAD_ID}/mcp`; it is written into the harness MCP config on `agent pull` / `unpack` / `sync`, and whatever host you set receives the agent's token.
+Host override: `BRAINBASE_ORCHESTRATION_MCP_URL` (default `https://brainbase-orchestration-mcp.onrender.com`), a base origin to which the CLI appends `/t/<thread_id>/mcp` (the running task's `BRAINBASE_THREAD_ID`); it is written into the harness MCP config on `agent pull` / `unpack` / `sync`, and whatever host you set receives the agent's token.
 
 Design rules from the building page: give each agent one clear role and one testable, evaluatable task; use edge descriptions to explain what context should be passed forward; pass the summary, artifact, or decision the next agent needs instead of the full history; test one handoff at a time before adding external triggers.
 
