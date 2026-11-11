@@ -129,7 +129,7 @@ Follow `references/tutorial-first-mcp-server.md`: stand up the reference Node se
 ### 10. Manage an agent's MCP servers from an MCP client
 
 1. `agents_get` on the agent for its `revision`, then `mcp_servers_list`. Responses carry `has_headers` and `has_env` instead of credential values.
-2. `mcp_servers_upsert` with `agent_id`, `expected_revision`, `name`, `url` and `is_enabled` adds or changes one server. An upsert without credentials keeps the hidden ones already stored. Do not send headers, env values or tokens.
+2. `mcp_servers_upsert` with `agent_id`, `expected_revision`, `name`, `url` and `is_enabled` adds or changes one server. An upsert without credentials keeps the hidden ones already stored when the URL is unchanged. The docs say changing a server's URL clears its stored credentials and requires reconnecting, so tell the user before a URL change. Do not send headers, env values or tokens.
 3. `mcp_servers_remove` with the server's `name` removes it.
 4. Credentials and OAuth for the server are not reachable this way: have the user enter them on the agent's Tools page, or use `brainbase mcp connect <name>` from a shell (workflow 1).
 5. Integrations, functions and the browser have no Brainbase MCP tool. Full tool list and rules: `brainbase-mcp-tools`.

@@ -79,7 +79,7 @@ Docs only; see "Where the sources disagree".
 | `skills_attach` | Attaches that exact package to an agent; `version` is optional. | rev |
 | `skills_detach` | Detaches the exact attached package. | rev |
 | `mcp_servers_list` | Lists an agent's own MCP servers. Returns safe fields plus `has_headers` and `has_env`; never credential values. | |
-| `mcp_servers_upsert` | Adds or changes one server by `name` (`url`, `is_enabled`). Hidden stored credentials are preserved. Do not send headers, env values or tokens. | rev |
+| `mcp_servers_upsert` | Adds or changes one server by `name` (`url`, `is_enabled`). Hidden stored credentials are preserved when the URL is unchanged; the docs say a URL change clears them and requires reconnecting. Do not send headers, env values or tokens. | rev |
 | `mcp_servers_remove` | Removes one server by `name`. | rev |
 | `playbooks_list` | Returns the agent's active playbooks and `revision`. | |
 | `playbooks_upsert` | Creates a playbook (`title`, `description`, `body`) or updates one when `playbook_id` is sent. | rev, key |

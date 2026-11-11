@@ -6,13 +6,14 @@ Snapshot: 2026-11-10
 
 Each `brainbase-*` skill states its own coverage in one line. This file is the full matrix behind those lines. Tool names are defined in `tool-inventory.md`; the connected tool list wins over both files.
 
-## The three states
+## The states
 
 | State | Meaning | What the agent does |
 | --- | --- | --- |
 | Tools | The MCP has tools for the skill's main operations. | Use them, following `safety-contract.md`. Named gaps fall back as below. |
 | Fields only | The MCP has no tool for the area, but an agent field or a discovery tool touches it. | Set the field or read the list; everything else falls back. |
 | None | No Brainbase MCP tool exists for the area. | Fall back. Do not look for or invent a tool. |
+| Mapping | Used for `brainbase-cli` only. The CLI is the other way to operate Brainbase, not an area of it, so its commands are mapped to tools instead of given a state. | Read `cli-to-mcp-map.md`. |
 
 ## The fallback
 
@@ -39,7 +40,7 @@ Pick by what the session has:
 | `brainbase-benchmarks` | None | | Suites, runs, baselines, imports and exports |
 | `brainbase-memory` | None | | Memory tables and rows; `playbooks_*` covers the neighbouring playbook layer only |
 | `brainbase-payments` | None | | Wallet, credits, top-ups, spend limits, purchase requests. The orchestration credit limit is a scalar on `orchestrations_update`. |
-| `brainbase-cli` | Mapping | See `cli-to-mcp-map.md` | Login, tokens, manifests, link and sync, templates, machines, interfaces, members |
+| `brainbase-cli` | Mapping | See `cli-to-mcp-map.md` | Login, tokens, manifests, link and sync, template packing and publishing, machines, interfaces, members |
 
 ## Credits
 

@@ -12,7 +12,7 @@
 ### Added
 
 - `brainbase-mcp-tools`, a fifteenth skill: the reference for operating Brainbase through the Brainbase MCP, with every tool by area, the revision, idempotency and confirmation rules, the calls that spend credits, a CLI-to-MCP command map, and a matrix of what the MCP reaches in each skill. Every other skill now states its MCP coverage (tools, fields only, or none) and what to do when no tool exists. Version 0.2.0.
-- Five eval cases for agents that only have the Brainbase MCP (33 cases in all). Every eval prompt now asks for the answer in `answer.md`, which the `claude plugin eval` judge needs in order to score the "answer.md ..." assertions; first results are in `docs/evals.md`.
+- Five eval cases for agents working through the Brainbase MCP, four of them with no terminal (33 cases in all). Every eval prompt now asks for the answer in `answer.md`, which the `claude plugin eval` judge needs in order to score the "answer.md ..." assertions; first results are in `docs/evals.md`.
 - Two eval cases per skill under `skills/<name>/evals/` in the `claude plugin eval` layout (28 cases, 138 assertions), with the iteration-1 benchmark recorded in `docs/evals.md`: 98% assertion pass rate with the skills versus 16% without.
 
 ## 0.1.0 (2026-11-03)

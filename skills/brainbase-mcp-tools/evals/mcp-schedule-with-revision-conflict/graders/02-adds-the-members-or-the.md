@@ -4,4 +4,4 @@ focus: trace
 weight: 1
 ---
 
-answer.md adds the members or the edge with a dry run first, then applies the change with the latest revision
+answer.md includes both Triage and Fixer as members of the orchestration and adds the handoff edge from Triage to Fixer, using a dry run before the edge change and applying it with the latest revision

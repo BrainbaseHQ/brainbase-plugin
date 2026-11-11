@@ -10,7 +10,7 @@ description: >-
 
 The Brainbase MCP is a remote MCP server at `https://api.brainbaselabs.com/mcp`. A client that connects to it (Claude Code, Codex, ChatGPT, Claude, Cursor, VS Code) gets tools that act on the signed-in user's Brainbase account: find organizations and teams, create and edit agents and their instructions, playbooks, skills and MCP servers, define and run evals, build orchestrations with schedule triggers, and start, follow and stop tasks. It is the other way to operate Brainbase besides the `brainbase` CLI and the REST API, and it is the only one that needs no terminal.
 
-It does not cover the whole platform. Some areas have tools, some are reached only through a field on the agent, and some have nothing: interfaces, benchmarks, memory tables, machines, payments, surfaces. Every `brainbase-*` skill says which state applies to it; `references/coverage-by-primitive.md` holds the full matrix.
+It does not cover the whole platform. Some areas have tools, some are reached only through a field on the agent, and some have nothing: interfaces, benchmarks, memory tables, machines, payments, surfaces. Every other `brainbase-*` skill says which state applies to it, and `brainbase-cli` points to a command-by-command map; `references/coverage-by-primitive.md` holds the full matrix.
 
 This skill is a reference. The official `brainbase-mcp` package ships its own operating skill alongside the connection; the two agree on the write rules, and this one stands alone for clients that only have the remote server.
 
@@ -107,7 +107,7 @@ Tool names here come from the official package (version 0.1.2) and the docs, sna
 - `401`: complete or refresh OAuth in the client. `403`: the user's role or team access, or a credential that is not a user-scoped `mcp:all` grant. `404`: re-discover the resource. `400` or `422`: check the connected schema, IDs, cron and confirmation fields. Table: `references/safety-contract.md`.
 - `schedules_test` takes `trigger_id`, the schedule's persisted `id`. Passing `node_id` fails.
 - `evals_run` on a disabled eval is refused.
-- Responses never include credential values. `has_headers` and `has_env` on an MCP server only say hidden configuration exists, and an upsert without them preserves it.
+- Responses never include credential values. `has_headers` and `has_env` on an MCP server only say hidden configuration exists, and an upsert without them preserves it when the URL is unchanged; the docs say a URL change clears stored credentials and requires reconnecting.
 - The sources disagree on two points: the total tool count, and whether the `agent_versions_*` tools are part of the stable set. Quote no count, and use a version tool only when it is connected. Detail: `references/tool-inventory.md`.
 - The sources also disagree on whether an MCP sign-in can publish. Check the live docs before promising it.
 - The sources do not say: rate limits for the MCP, whether `tasks_create` accepts a model, version or interface, or how long an OAuth grant lasts.

@@ -26,7 +26,7 @@ The docs mirror behind this skill is a snapshot (2026-11-03). Fetch the live pag
 - Prefer `--json` and the exit code when a script or you must act on output. Branch on the exit code first: an unlinked folder prints a normal-looking body with no `error` key and exits non-zero, and `mcp check` exits 0 whenever the probe ran.
 - `machine_kind` is immutable after `agent create`; `--force` never changes it. Create a new agent to change providers.
 - Beta or limited: Payments and Benchmarks are beta (their own skills); `integrations` works on Kafka agents only; `integrations context create|end` is canary-only (CLI 0.54.0).
-- With the Brainbase MCP also connected, stay on one path per resource and run `brainbase agent pull` before the next push after any MCP write. The command-to-tool map and the commands with no MCP tool are in `brainbase-mcp-tools`, in its CLI-to-MCP map.
+- Brainbase MCP coverage: mapping. The CLI's commands are mapped to MCP tools one by one, not given a coverage state. With the Brainbase MCP also connected, stay on one path per resource and run `brainbase agent pull` before the next push after any MCP write. The command-to-tool map and the commands with no MCP tool are in `brainbase-mcp-tools`, in its CLI-to-MCP map.
 
 ## Concepts
 

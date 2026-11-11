@@ -17,9 +17,9 @@ Prompts are written the way a real user would ask, and assertions check facts th
 claude plugin eval skills/brainbase-cli --allow-tools Write
 ```
 
-The CLI runs each case with and without the skill and writes its report under `evals/results/`. These are real, billed model runs; a skill's two cases cost roughly four executor runs plus grading.
+The CLI runs each case with and without the skill and writes its report under `evals/results/`. These are real, billed model runs; each case costs two executor runs plus grading, so roughly four for a skill with two cases and six for one with three.
 
-Five later cases pose an agent that only has the Brainbase MCP connected: `mcp-schedule-with-revision-conflict` and `mcp-no-tool-from-shell-less-client` in `brainbase-mcp-tools`, `evals-run-through-mcp`, `sandbox-machine-size-through-mcp` and `interface-publish-without-mcp-tool`. The eval harness exposes no MCP tools, so each prompt states what the agent has connected and the graders read the written answer. They are not in the tables below.
+Five later cases pose an agent with the Brainbase MCP connected, four of them with no terminal and one with a logged-in CLI as well: `mcp-schedule-with-revision-conflict` and `mcp-no-tool-from-shell-less-client` in `brainbase-mcp-tools`, `evals-run-through-mcp`, `sandbox-machine-size-through-mcp` and `interface-publish-without-mcp-tool`. The eval harness exposes no MCP tools, so each prompt states what the agent has connected and the graders read the written answer. They are not in the tables below.
 
 Every prompt ends with "Write your complete answer to `answer.md` in the current directory." The assertions are phrased "answer.md ...", and without that line a run answers in the transcript, writes no file, and the CLI's judge fails almost every positive assertion in both arms (an existing case, `evals-policy-check-manifest`, scored 0.56 with the skill that way).
 

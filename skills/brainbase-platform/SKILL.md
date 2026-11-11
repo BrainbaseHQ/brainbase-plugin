@@ -186,7 +186,7 @@ instructions.
 
 1. Find the agent: `orgs_list`, `teams_list`, `agents_list`, then `agents_get` (note its `revision`).
 2. Create one with `agents_create` (an `idempotency_key`, `title`, `group_id`, `instructions`), or from a registry template found with `templates_search` and `templates_get`. Omitting `runtime_kind` gives `kafka_cloud`.
-3. Change it one field at a time, each call carrying the latest `expected_revision`: `instructions_update` for instructions, `agents_update` for title, runtime, default model or entrypoint, `playbooks_upsert` and `playbooks_archive` for playbooks.
+3. Change it one field at a time, each call carrying the latest `expected_revision`: `instructions_update` for instructions, `agents_update` for title, runtime, default model or entrypoint. Playbooks use their own revision: read `playbooks_list`, then `playbooks_upsert` with that `expected_revision` and an `idempotency_key` (plus `playbook_id` to update one), or `playbooks_archive` with the exact title as `confirm_name` after the user confirms.
 4. Run it: tell the user the run spends credits, then `tasks_create` with an `idempotency_key` and `initial_messages`. Poll `tasks_get`, read `tasks_events`, answer `need_more_info` with `tasks_followup`, stop with `tasks_interrupt`.
 5. Not reachable this way: inline-spec threads (workflow 1), task update and delete, modes and secrets. Version tools (`agent_versions_*`) are named in the docs but not in the official package; use them only when connected. Full tool list and rules: `brainbase-mcp-tools`.
 
