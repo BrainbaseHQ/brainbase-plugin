@@ -19,7 +19,9 @@ claude plugin eval skills/brainbase-cli --allow-tools Write
 
 The CLI runs each case with and without the skill and writes its report under `evals/results/`. These are real, billed model runs; a skill's two cases cost roughly four executor runs plus grading.
 
-Five later cases pose an agent that only has the Brainbase MCP connected: `mcp-schedule-with-revision-conflict` and `mcp-no-tool-from-shell-less-client` in `brainbase-mcp-tools`, `evals-run-through-mcp`, `sandbox-machine-size-through-mcp` and `interface-publish-without-mcp-tool`. The eval harness exposes no MCP tools, so each prompt states what the agent has connected and the graders read the written answer. They have not been run yet and are not in the tables below.
+Five later cases pose an agent that only has the Brainbase MCP connected: `mcp-schedule-with-revision-conflict` and `mcp-no-tool-from-shell-less-client` in `brainbase-mcp-tools`, `evals-run-through-mcp`, `sandbox-machine-size-through-mcp` and `interface-publish-without-mcp-tool`. The eval harness exposes no MCP tools, so each prompt states what the agent has connected and the graders read the written answer. They are not in the tables below.
+
+Run on 2026-11-10 with `claude plugin eval` (one run per arm, Sonnet executor and judge): the with-skill answers named the right tools, safety steps and fallbacks for all 28 assertions when read by hand, but the CLI's own judge failed almost every positive assertion in both arms. The assertions are phrased "answer.md ...", and these runs answer in the transcript without writing an `answer.md`, so the judge finds no file to check. The same happens to an existing case today (`evals-policy-check-manifest` scored 0.56 with the skill). Until the prompts or graders are changed to match what the CLI judge sees, `claude plugin eval` scores for this repo are not a measure of the skills.
 
 ## Benchmark, iteration 1 (2026-11-03)
 
