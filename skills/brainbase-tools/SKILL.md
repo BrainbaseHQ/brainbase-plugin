@@ -40,7 +40,8 @@ The docs mirror this skill condenses is a snapshot from 2026-11-03. Fetch the li
 - Destructive: `brainbase integrations disconnect` removes the account for everyone using the agent (asks, or `--yes`); ending an integration context revokes its handle and grants; removing an orchestration MCP server affects every member on its next bootstrap. Confirm with the user first.
 - Credits: tasks and threads spend credits, so do Brainbase-MCP operations that start a task, run an eval, test a schedule or send a follow-up; image generation is billed through credits.
 - Retry safety: keep the same `operation_id` and input when retrying `run_action`, `proxy_request` or `upload_file`. Never work around `outcome_unknown` with a new id, task or context; a manager checks the app and acknowledges.
-- For live operations prefer what the user already has: `brainbase` CLI with `--json`, the REST API with the user's key, or the Brainbase MCP (companion plugin `brainbase-mcp`).
+- For live operations prefer what the user already has: `brainbase` CLI with `--json`, the REST API with the user's key, or the Brainbase MCP (`brainbase-mcp-tools`).
+- Brainbase MCP coverage: tools, for an agent's own MCP servers only. `mcp_servers_list`, `mcp_servers_upsert` and `mcp_servers_remove` add, change and remove a server by name without ever carrying credential values. Integrations and their rules, authorizing a server's OAuth, functions and browser proxies have no MCP tool; use the CLI below, or give the user the console steps when the session has no shell. Tools and write rules: `brainbase-mcp-tools`.
 
 ## Concepts
 
@@ -125,6 +126,14 @@ The docs mirror this skill condenses is a snapshot from 2026-11-03. Fetch the li
 
 Follow `references/tutorial-first-mcp-server.md`: stand up the reference Node server, declare a tool with a concrete `description`, deploy behind public HTTPS (a tunnel while iterating), attach via `mcp_servers`, restrict tools with server-side scopes, then verify with `brainbase mcp list` and `mcp check`.
 
+### 10. Manage an agent's MCP servers from an MCP client
+
+1. `agents_get` on the agent for its `revision`, then `mcp_servers_list`. Responses carry `has_headers` and `has_env` instead of credential values.
+2. `mcp_servers_upsert` with `agent_id`, `expected_revision`, `name`, `url` and `is_enabled` adds or changes one server. An upsert without credentials keeps the hidden ones already stored. Do not send headers, env values or tokens.
+3. `mcp_servers_remove` with the server's `name` removes it.
+4. Credentials and OAuth for the server are not reachable this way: have the user enter them on the agent's Tools page, or use `brainbase mcp connect <name>` from a shell (workflow 1).
+5. Integrations, functions and the browser have no Brainbase MCP tool. Full tool list and rules: `brainbase-mcp-tools`.
+
 ## Limits, gotchas and errors
 
 - Integration uploads: 25 MiB per file (`payload_too_large`). Inline results: 32 KiB default, `max_inline_bytes` up to 256 KiB; standalone calls never write `result_ref`.
@@ -142,6 +151,7 @@ Follow `references/tutorial-first-mcp-server.md`: stand up the reference Node se
 
 ## Related skills and live docs
 
+- `brainbase-mcp-tools`: operating Brainbase from an MCP client with the Brainbase MCP: every tool, revisions and confirmations, and what the MCP does not reach.
 - `brainbase-permissions`: who may connect apps, change rules, acknowledge outcomes; PAT scopes (`publish` for MCP connect links and orchestration server writes).
 - `brainbase-orchestration`: orchestrations, edges, triggers, the orchestration MCP's `create_task_for_<recipient>` tools, shared secrets.
 - `brainbase-surfaces`: Slack, Linear, GitHub, meetings and phone as channels (their built-in MCPs are only named here).

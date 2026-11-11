@@ -188,7 +188,7 @@ OpenCode, 19 s Claude Code, 20 s Kafka); sandbox creation overlaps the first-mes
 | Console | `https://app.brainbaselabs.com` | Login session | Projects, agents, tasks, settings, Members, Usage, Billing (changelog 2026-07-01); legacy UI at `/legacy`. Everything created by API appears here. |
 | Universal Harness API | `https://api.brainbaselabs.com/v2/…` | `Authorization: Bearer $BRAINBASE_API_KEY` | Agents, threads, tasks, messages, events, templates, alerts, groups/teams, machines, files, evals, orchestrations, benchmarks. |
 | CLI control plane | `https://api.brainbaselabs.com/v2/cli/…` | PAT `bbpat_…` or session | Serves the CLI; not the public API contract. `brainbase-cli`. |
-| Brainbase MCP | `https://api.brainbaselabs.com/mcp` (Streamable HTTP) | Brainbase OAuth, scope `mcp:all` | 52 explicit tools (docs page); Codex: `codex mcp add brainbase --url https://api.brainbaselabs.com/mcp`. `brainbase-tools`. |
+| Brainbase MCP | `https://api.brainbaselabs.com/mcp` (Streamable HTTP) | Brainbase OAuth, scope `mcp:all` | Explicit tools for agents, evals, orchestrations and tasks; Codex: `codex mcp add brainbase --url https://api.brainbaselabs.com/mcp`. `brainbase-mcp-tools`. |
 | Changelog | `https://app.brainbaselabs.com/changelog` | public | Cite entries by date and title. |
 
 Onboarding (changelog 2026-10-30): new accounts get $25 free credits after phone and card verification; free

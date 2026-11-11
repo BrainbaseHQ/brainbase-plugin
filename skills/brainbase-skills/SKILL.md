@@ -13,8 +13,8 @@ description: >-
   agent cannot find a skill it installed, wants to publish or pin a skill
   version, or asks whether something belongs in instructions, a playbook or a
   skill. Not for Claude Code skills in general, for templates and the rest of
-  the CLI (`brainbase-cli`), or for the Brainbase MCP's skill tools
-  (`brainbase-mcp`).
+  the CLI (`brainbase-cli`), or for the rest of the Brainbase MCP
+  (`brainbase-mcp-tools`).
 ---
 
 # Brainbase skills
@@ -43,6 +43,7 @@ The docs mirror this skill was written from is a snapshot (2026-11-03). Fetch th
 - **A manifest push replaces the agent's component list.** `PUT /v2/cli/agents/{agent_id}/manifest` (what `agent push` calls) is a whole-manifest replacement: components absent from the manifest are unlinked or archived. Run `brainbase agent status` and read what will change before pushing a `skills:` edit.
 - **An agent-version pin does not freeze skill contents; a source-string pin does.** `brainbase agent versions pin` or `task create --version` freezes *which* skills are installed, and each task then installs those skills at their current contents. Pinning the registry version in the source string (`registry:creator/slug@1.4.0`) freezes the contents too: an exact pin always installs that published version.
 - **Credits and secrets.** The docs describe no charge for installing, updating or publishing a skill; the tasks that use them spend credits as usual (`brainbase-payments`). Never put a token in a skill folder you publish; `bbpat_…` and `bb_live_…` values belong in `BRAINBASE_TOKEN` or agent secrets.
+- Brainbase MCP coverage: tools. `skills_search`, `skills_get`, `skills_attach` and `skills_detach` work on registry skills for a cloud agent from an MCP client. Publishing, local skill upload and installing into a local harness have no MCP tool; use `brainbase skill …`, which needs a shell. Tools and write rules: `brainbase-mcp-tools`.
 
 ## Concepts
 
@@ -168,6 +169,14 @@ Check in this order; each item maps to a fix the docs or changelog describe:
 5. A folder whose skill lacks `.brainbase.json` is treated as one the CLI did not install, so a template install will not displace it; conversely `skill update` cannot re-fetch it.
 6. Is the task pinned to an older version? A pin installs the skills that version lists.
 
+### 8. Attach a registry skill from an MCP client
+
+1. `skills_search` for the skill, then `skills_get` with its `creator` and `slug` to confirm the exact package and versions.
+2. `agents_get` on the agent and note its `revision`.
+3. `skills_attach` with `agent_id`, `expected_revision`, `creator`, `slug` and an optional `version`. Read back with `agents_get`.
+4. Remove with `skills_detach` and the same package identity.
+5. This attaches a registry skill to the cloud agent. It does not publish a skill, upload a local folder or install into a harness on disk; those need `brainbase skill …` (workflows 2 and 5). Full tool list and rules: `brainbase-mcp-tools`.
+
 ## Limits, gotchas and errors
 
 | Situation | What happens | Fix |
@@ -191,12 +200,13 @@ Other limits: the `skill` command group is auth-gated (`BRAINBASE_TOKEN` or a lo
 
 ## Related skills and live docs
 
+- `brainbase-mcp-tools`: operating Brainbase from an MCP client with the Brainbase MCP: every tool, revisions and confirmations, and what the MCP does not reach.
 - `brainbase-cli`: install, login, PATs, the rest of the manifest, `agent pull|push|sync|unpack`, templates in depth, exit codes, environment variables.
 - `brainbase-platform`: instructions, playbooks, versions and pins, the agents endpoints.
 - `brainbase-tools`: MCP servers, integrations and functions, the other half of the capability layer.
 - `brainbase-permissions`: PAT scopes, project-scoped visibility of skills, roles.
 - `brainbase-memory`: memory versus playbooks, instructions and skills.
-- `brainbase-mcp` (companion plugin, same marketplace): the Brainbase MCP's tools for working with skills from an MCP client (changelog, 2026-07-22). The docs mirror does not name the individual skill tools; open that plugin for them.
+- `brainbase-mcp` (companion plugin, same marketplace): connects the Brainbase MCP and ships its operating skill. The skill tools it exposes are named in workflow 8.
 
 Live pages: https://docs.brainbaselabs.com/docs/agent/skills (console), https://docs.brainbaselabs.com/cli/concepts/skills (sources and registry), https://docs.brainbaselabs.com/cli/commands/skill (commands), https://docs.brainbaselabs.com/cli/reference/agent-manifest#skills (manifest), https://docs.brainbaselabs.com/cli/reference/files (`.brainbase.json`), https://docs.brainbaselabs.com/cli/concepts/harnesses (landing paths), https://docs.brainbaselabs.com/api/agents/create-agent and https://docs.brainbaselabs.com/api/agents/update-agent (API `skills`), https://app.brainbaselabs.com/changelog.
 
