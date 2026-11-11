@@ -6,3 +6,5 @@ allowed_tools: [Read, Glob, Grep, Skill, Write, WebFetch, WebSearch]
 ---
 
 Add an eval to my brainbase.agent.yaml that fails any turn where the agent promises a refund. Explain where the verdicts show up and what the judge costs.
+
+Write your complete answer to `answer.md` in the current directory.

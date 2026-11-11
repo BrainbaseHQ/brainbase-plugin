@@ -4,4 +4,4 @@ focus: trace
 weight: 1
 ---
 
-answer.md changes the instructions with instructions_update or agents_update, after reading the agent and passing its revision as expected_revision
+answer.md changes the instructions with instructions_update or agents_update, and says the agent is read first so the write carries its current revision

@@ -6,3 +6,5 @@ allowed_tools: [Read, Glob, Grep, Skill, Write, WebFetch, WebSearch]
 ---
 
 Write a brainbase-orchestration.yaml where a triage agent hands confirmed bugs to a fixer agent, and the triage agent runs every weekday at 09:00 UTC. Explain how the handoff actually happens at runtime.
+
+Write your complete answer to `answer.md` in the current directory.

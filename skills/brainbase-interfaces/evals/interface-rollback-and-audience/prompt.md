@@ -6,3 +6,5 @@ allowed_tools: [Read, Glob, Grep, Skill, Write, WebFetch, WebSearch]
 ---
 
 Someone published a broken release of our Brainbase interface. How do I roll it back, and can I limit who can see it to a few people?
+
+Write your complete answer to `answer.md` in the current directory.

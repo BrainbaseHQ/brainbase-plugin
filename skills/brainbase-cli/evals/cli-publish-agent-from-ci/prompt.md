@@ -6,3 +6,5 @@ allowed_tools: [Read, Glob, Grep, Skill, Write, WebFetch, WebSearch]
 ---
 
 I have a folder with instructions for an agent. Walk me through getting it onto Brainbase with the CLI from a fresh machine and kicking off a task I wait on, all from a non-interactive CI job.
+
+Write your complete answer to `answer.md` in the current directory.

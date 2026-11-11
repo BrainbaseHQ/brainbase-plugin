@@ -6,3 +6,5 @@ allowed_tools: [Read, Glob, Grep, Skill, Write, WebFetch, WebSearch]
 ---
 
 Add my company's remote MCP server at https://mcp.example.com/sse, which needs an API key header, to my Brainbase agent's manifest, and show me how to verify it works from the CLI.
+
+Write your complete answer to `answer.md` in the current directory.
