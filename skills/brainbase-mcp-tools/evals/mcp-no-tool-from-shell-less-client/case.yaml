@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: mcp-no-tool-from-shell-less-client
+expected_outcome: |
+  Changes instructions through the MCP with a fresh revision, says Slack connection and the credit balance have no Brainbase MCP tool, and gives console steps for those instead of CLI commands.

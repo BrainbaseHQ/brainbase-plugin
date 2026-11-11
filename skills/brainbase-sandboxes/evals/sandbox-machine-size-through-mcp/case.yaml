@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: sandbox-machine-size-through-mcp
+expected_outcome: |
+  Sets machine_kind on agents_create and says it cannot change later, says no Brainbase MCP tool lists or removes machines, and routes that part to the CLI, the machines API or the console.

@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: evals-run-through-mcp
+expected_outcome: |
+  Creates the eval with evals_create and an idempotency key, makes sure it is enabled, says evals_run spends credits before running it with a new idempotency key and a prompt, then reads verdicts with evals_results.

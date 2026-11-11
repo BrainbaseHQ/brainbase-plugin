@@ -12,3 +12,4 @@ brainbase-tools	Add my company's remote MCP server at https://mcp.example.com/ss
 brainbase-skills	Install the skill acme/pdf-tools version 1.2.3 from the Brainbase registry into my agent, both via the manifest and the CLI, and tell me where it ends up on the Claude Code harness.
 brainbase-memory	I want my Brainbase agent to remember each customer's preferences across tasks. Set up memory, define a table for it, and show me the tool calls the agent will make.
 brainbase-payments	Set up auto top-up so my Brainbase org never runs out of credits, and tell me what consumes credits and how much one credit is worth.
+brainbase-mcp-tools	I'm in ChatGPT with the Brainbase MCP connected and no terminal. Which tool changes my agent's instructions, what do I pass so I don't overwrite a teammate's edit, and can I connect the agent to Slack from here?
