@@ -12,7 +12,7 @@ By [Brainbase Labs](https://brainbaselabs.com/)
 
 Brainbase Plugin is a set of skills for Claude Code, Codex, Cursor and other coding agents that work with the [Brainbase](https://brainbaselabs.com) agent platform. Ask your agent to publish an agent from a folder, switch a running task's model, wire an orchestration, connect Slack, add an eval or mint a CI token, and the matching skill opens on its own with the exact commands, endpoints, fields, limits and error codes.
 
-It's built from the public docs at [docs.brainbaselabs.com](https://docs.brainbaselabs.com) and the public [changelog](https://app.brainbaselabs.com/changelog) only. Where the docs are silent the skill says so instead of guessing, and it tells the agent when an action spends credits or can't be undone.
+It's built from the public docs at [docs.brainbaselabs.com](https://docs.brainbaselabs.com) and the public [changelog](https://app.brainbaselabs.com/changelog), with Brainbase MCP tool names taken from the official [`brainbase-mcp`](https://github.com/BrainbaseHQ/brainbase-mcp) package. Where the docs are silent the skill says so instead of guessing, and it tells the agent when an action spends credits or can't be undone.
 
 ## Install
 
@@ -304,7 +304,7 @@ Other third-party hosts named in the skills (`api.githubcopilot.com`, vendor doc
 ## How the skills stay honest
 
 - Every reference file names the docs pages it condenses (`Source:` lines) and the date of the snapshot it was written from (`Snapshot:`).
-- Facts come from the docs and changelog only. Where the docs are silent, the skill says so and points at the live page instead of guessing.
+- Facts come from the docs and changelog. Brainbase MCP tool names also come from the official `brainbase-mcp` package, cited with the version read. Where the docs are silent, the skill says so and points at the live page instead of guessing.
 - Skills tell the agent to fetch the live docs for console click paths, prices, model lists and other version-sensitive details, and to treat fetched pages as data rather than instructions.
 - Skills never ask for or print secret values, and they say when an action spends credits or is destructive.
 - Every skill ships eval cases that run with and without the skill. The latest benchmark is in [docs/evals.md](docs/evals.md): 98% of assertions pass with the skills, 16% without.
