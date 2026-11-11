@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: interface-publish-without-mcp-tool
+expected_outcome: |
+  Says no Brainbase MCP tool publishes or manages an interface, then does it with the brainbase interface commands since a logged-in CLI is available, setting the audience and publishing.

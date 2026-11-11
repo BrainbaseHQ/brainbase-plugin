@@ -165,7 +165,7 @@ From the manifest reference: evals are the agent's test suite, so keeping them i
 | 2026-06-18 | Agent as a Judge | Model / Agent toggle per eval; agent judges run as their own task; "View judge run" transcript; judge runs hidden from the task list. |
 | 2026-07-03 | New Models Available: GLM 5.2, DeepSeek V4 Pro, and Kimi K2.7 Code | These models appear in eval detail views (among other pickers). |
 | 2026-07-18 | Fixes and Improvements | Teammates and shared-group members can view an agent's evaluations and results. |
-| 2026-07-22 | Brainbase MCP: Manage Your Agents from Claude Code and Codex | The Brainbase MCP's tool set covers evals ("run evaluations"). The docs MCP page lists no eval tool by name; check the live page. |
+| 2026-07-22 | Brainbase MCP: Manage Your Agents from Claude Code and Codex | The Brainbase MCP's tool set covers evals ("run evaluations"). The docs MCP page lists no eval tool by name; the official `brainbase-mcp` package (0.1.2) names `evals_list`, `evals_get`, `evals_create`, `evals_update`, `evals_delete`, `evals_run` and `evals_results`. See `brainbase-mcp-tools`. |
 | 2026-07-24 | Fixes and Improvements | The evals panel in a transcript's turn detail view scrolls instead of clipping. |
 | 2026-09-03 | Developer Updates | Manifest `evals` now sync: `push`, `pull` and `status` understand the block. |
 | 2026-09-04 | Fixes and Improvements | Agent-judge evals run on Claude Code, Codex and OpenCode, not only Kafka. |

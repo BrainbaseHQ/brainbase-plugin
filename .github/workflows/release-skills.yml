@@ -47,5 +47,5 @@ jobs:
         run: |
           gh release view skills-zip > /dev/null 2>&1 || gh release create skills-zip \
             --title "Brainbase skills (zip)" \
-            --notes "Latest skill zips, rebuilt whenever a skill changes on main. brainbase-all-skills.zip holds all fourteen skills (unzip it into your agent's skills folder); the brainbase-<topic>.zip files are single skills for Claude's Customize > Skills upload. Don't use the Source code archives below: they aren't packaged as skills."
+            --notes "Latest skill zips, rebuilt whenever a skill changes on main. brainbase-all-skills.zip holds all fifteen skills (unzip it into your agent's skills folder); the brainbase-<topic>.zip files are single skills for Claude's Customize > Skills upload. Don't use the Source code archives below: they aren't packaged as skills."
           gh release upload skills-zip dist/*.zip --clobber

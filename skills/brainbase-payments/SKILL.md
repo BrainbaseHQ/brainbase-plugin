@@ -36,6 +36,7 @@ Where it lives: Billing, Usage and the agent Payments page are console pages. Th
 - Prices in the mirror are the docs' own estimates ("Prices here are estimates and may change"). Fetch https://docs.brainbaselabs.com/docs/agent/sandboxes for sandbox and GPU rates and https://brainbaselabs.com/pricing for plans before quoting a number as current.
 - Per-token model prices and promotions belong to `brainbase-llm-gateway`; here, the only model rule is that model usage draws credits (or AWS bills it under Bring Your Own Bedrock). Who may change a spend limit is not stated in the sources; the changelog only calls billing an "owner-only setting" and lets enterprise admins manage the card on file. Open `brainbase-permissions` for roles.
 - Two billing models exist: the prepaid wallet (self-serve), and contract or usage-billed plans (Enterprise, and Teams' "usage beyond included limits billed at the end of each cycle"). The changelog (2026-09-18) says Billing and Usage show only the concepts that apply to the account's plan, so what the user sees depends on which model they are on.
+- Brainbase MCP coverage: none. No Brainbase MCP tool reads the wallet, buys credits, sets a spend limit or handles a purchase request; those stay in the console. The MCP calls that spend credits are `tasks_create`, `tasks_followup` with `run`, `evals_run` and `schedules_test`, and the orchestration credit limit is a field on `orchestrations_update`. What the MCP does reach: `brainbase-mcp-tools`.
 
 ## Concepts
 
@@ -135,6 +136,7 @@ Where it lives: Billing, Usage and the agent Payments page are console pages. Th
 
 | Question | Open |
 |---|---|
+| Operating Brainbase from an MCP client: Brainbase MCP tools, revisions, what it does not reach | `brainbase-mcp-tools` |
 | Per-token model prices, promotions, Bring Your Own Bedrock setup, AWS Marketplace model access | `brainbase-llm-gateway` |
 | Sandbox providers, sizes, GPU, sleep/resume, machine APIs | `brainbase-sandboxes` |
 | Who can change billing, spend limits or the card on file; owner-only settings | `brainbase-permissions` |

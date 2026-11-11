@@ -34,6 +34,7 @@ The mirror this skill condenses is a snapshot dated 2026-11-03. Fetch the live p
 - Never ask for, print or write token values. Point at `BRAINBASE_TOKEN` / `$BRAINBASE_API_KEY` and the console.
 - `DELETE /v2/agents/{agent_id}/evals/{eval_id}` is destructive and the docs do not say whether it archives or hard-deletes; prefer `enabled: false` to pause, and confirm before deleting.
 - Agent-as-judge shipped via the changelog (2026-06-18); the docs cover its fields but console labels come from the changelog. Benchmarks are beta, by request.
+- Brainbase MCP coverage: tools. `evals_list`, `evals_get`, `evals_create`, `evals_update`, `evals_delete`, `evals_run` and `evals_results` manage and run evals from an MCP client. `evals_run` is billable and needs an enabled eval. Benchmarks have no MCP tool. Tools and write rules: `brainbase-mcp-tools`.
 
 ## Concepts
 
@@ -142,6 +143,14 @@ brainbase agent status --json | jq -e '.evals.pushBlocked == false and (.evals.a
 
 `evals.pushBlocked` true means the cloud has eval changes this checkout never pulled; `evals.archive` lists what a push would archive. Set `BRAINBASE_TOKEN` in CI; `agent push` needs a PAT with `publish`, eval reads need no scope.
 
+### 8. Manage and run evals from an MCP client
+
+1. `evals_list` on the agent. Create with `evals_create` (an `idempotency_key`, `slug`, `criteria`, `judge_type`, `output_shape`, `enabled`). To change one, `evals_get` then `evals_update` with that `revision` and only the fields that change.
+2. Run one eval on demand with `evals_run`, which the CLI has no command for: the eval must have `enabled: true`, the call needs a new `idempotency_key`, the `eval_id` and a `prompt`, and it spends credits, so tell the user first.
+3. Poll the returned task with `tasks_get`, then read verdicts with `evals_results` filtered by `task_id`.
+4. Prefer `enabled: false` through `evals_update` to pause. `evals_delete` needs the user's confirmation and the exact slug as `confirm_name`.
+5. A manifest `evals:` list is authoritative on `agent push`, so after MCP eval changes run `brainbase agent pull` in any linked folder before pushing. Full tool list and rules: `brainbase-mcp-tools`.
+
 ## Limits, gotchas and errors
 
 | Item | Value or behaviour |
@@ -165,13 +174,13 @@ brainbase agent status --json | jq -e '.evals.pushBlocked == false and (.evals.a
 
 ## Related skills and live docs
 
+- `brainbase-mcp-tools`: operating Brainbase from an MCP client with the Brainbase MCP: every tool, revisions and confirmations, and what the MCP does not reach.
 - `brainbase-benchmarks`: versioned, repeatable test runs, cases, checks (including the benchmark "Model judge" check), baselines.
 - `brainbase-cli`: manifest lifecycle, `pull`/`push`/`status`, PATs, exit codes, environment variables.
 - `brainbase-permissions`: roles, PAT scopes (`read`/`publish`/`admin`), resource scope, strict admission in depth.
 - `brainbase-payments`: credits, wallet, spend limits, what a judge call costs.
 - `brainbase-platform`: tasks, threads, turns, the Universal Harness API, Tasks view filters (including eval result).
 - `brainbase-llm-gateway`: which model ids are valid for `judge_model`.
-- `brainbase-tools`: the Brainbase MCP (changelog 2026-07-22 says it can manage evals; the docs MCP page lists no eval tool by name).
 
 Live pages: https://docs.brainbaselabs.com/docs/monitoring/evaluations · https://docs.brainbaselabs.com/cli/reference/agent-manifest#evals · https://docs.brainbaselabs.com/cli/commands/agent#eval · https://docs.brainbaselabs.com/api/evals/create-eval (and list-evals, get-eval, update-eval, delete-eval, list-eval-runs) · https://docs.brainbaselabs.com/cli/reference/control-plane-api · https://docs.brainbaselabs.com/cli/reference/pat-scopes · https://docs.brainbaselabs.com/docs/agent-lifecycle/testing · https://docs.brainbaselabs.com/tutorials/eval-driven-receipt-extraction · https://app.brainbaselabs.com/changelog
 

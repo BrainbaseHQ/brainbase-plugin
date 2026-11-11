@@ -38,6 +38,7 @@ Facts here come from the docs snapshot of 2026-11-03 at https://docs.brainbasela
 - Declarative `default_model` writes from the CLI need the MAS `/v2/cli` control plane. With `BRAINBASE_API_URL` pointing at the legacy KLS `/api/cli` surface the CLI refuses them before sending.
 - Never type, print or commit AWS keys, Bedrock API keys, or vendor keys. They go into the console forms (Settings or the agent's Secrets page), `.brainbase/secrets.env`, or the `secrets` object on the API. Placeholders only in manifests and examples.
 - The catalog changes often. The docs snapshot and the changelog disagree on the current default (docs: Claude Opus 5 on Claude Code, GPT-5.6 Sol elsewhere; changelog 2026-10-27: Claude Opus 5.5 on Claude Code, GPT-6 Sol elsewhere; changelog 2026-10-30: accounts on free signup credits default to a model those credits can run). Call `GET /v2/models` for the answer that counts.
+- Brainbase MCP coverage: fields only. An MCP client can set `default_model` through `agents_create` and `agents_update`, and nothing else here: no tool lists models, switches a running task's model, or sets up Bring Your Own Bedrock or vendor keys. Use the CLI or API below, or give the user the console steps when the session has no shell. Tools and write rules: `brainbase-mcp-tools`.
 
 ## Concepts
 
@@ -173,6 +174,7 @@ Model access and throughput are separate approvals in the deployment account, in
 
 ## Related skills and live docs
 
+- `brainbase-mcp-tools`: operating Brainbase from an MCP client with the Brainbase MCP: every tool, revisions and confirmations, and what the MCP does not reach.
 - `brainbase-platform`: harness choice in general, the Universal Harness API, agent configuration and versions.
 - `brainbase-cli`: `brainbase.agent.yaml`, `agent create/push/pull/status`, `task create/update`, environment variables, PAT scopes.
 - `brainbase-payments`: credits, wallets, spend limits, what consumes credits, AWS Marketplace billing.

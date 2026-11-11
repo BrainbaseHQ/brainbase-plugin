@@ -6,3 +6,5 @@ allowed_tools: [Read, Glob, Grep, Skill, Write, WebFetch, WebSearch]
 ---
 
 My Cursor-harness agent on Brainbase fails right away with missing_required_secret. What's going on and how do I fix it?
+
+Write your complete answer to `answer.md` in the current directory.

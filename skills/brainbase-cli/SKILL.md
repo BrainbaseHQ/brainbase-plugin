@@ -26,6 +26,7 @@ The docs mirror behind this skill is a snapshot (2026-11-03). Fetch the live pag
 - Prefer `--json` and the exit code when a script or you must act on output. Branch on the exit code first: an unlinked folder prints a normal-looking body with no `error` key and exits non-zero, and `mcp check` exits 0 whenever the probe ran.
 - `machine_kind` is immutable after `agent create`; `--force` never changes it. Create a new agent to change providers.
 - Beta or limited: Payments and Benchmarks are beta (their own skills); `integrations` works on Kafka agents only; `integrations context create|end` is canary-only (CLI 0.54.0).
+- Brainbase MCP coverage: mapping. The CLI's commands are mapped to MCP tools one by one, not given a coverage state. With the Brainbase MCP also connected, stay on one path per resource and run `brainbase agent pull` before the next push after any MCP write. The command-to-tool map and the commands with no MCP tool are in `brainbase-mcp-tools`, in its CLI-to-MCP map.
 
 ## Concepts
 
@@ -117,6 +118,7 @@ The docs mirror behind this skill is a snapshot (2026-11-03). Fetch the live pag
 
 | Question | Open |
 | --- | --- |
+| Operating Brainbase from an MCP client: Brainbase MCP tools, revisions, what it does not reach | `brainbase-mcp-tools` |
 | What agents, harnesses, tasks and threads are; the public `/v2` API | `brainbase-platform` |
 | Model ids, defaults per harness, Auto, the model proxy behind tracking | `brainbase-llm-gateway` |
 | `machine_kind` providers, sizes, prices, previews | `brainbase-sandboxes` |
@@ -126,7 +128,7 @@ The docs mirror behind this skill is a snapshot (2026-11-03). Fetch the live pag
 | Benchmarks (beta) and any `benchmark` commands | `brainbase-benchmarks` |
 | Evals, judges, eval credits | `brainbase-evals` |
 | Roles, PAT scope semantics in depth, Allow/Ask/Deny, API keys vs sessions | `brainbase-permissions` |
-| Integrations, MCP servers, functions, the Brainbase MCP | `brainbase-tools` |
+| Integrations, MCP servers, functions | `brainbase-tools` |
 | Skills on the platform, publishing to the registry | `brainbase-skills` |
 | Memory tables and `capabilities.memory` | `brainbase-memory` |
 | Credits, wallet, top-ups, spend limits | `brainbase-payments` |

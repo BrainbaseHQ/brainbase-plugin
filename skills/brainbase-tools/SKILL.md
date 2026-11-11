@@ -7,11 +7,11 @@ description: >-
   manifest `mcp` block, `brainbase mcp list|connect|check`, orchestration-shared servers,
   Override/Suppress, `${NAME}` secrets), built-in MCPs (orchestration, memory, browser, Slack,
   meeting, GitHub, Linear) and URL overrides, functions, browser and proxies, AppFactory, image
-  generation, web search, the Brainbase MCP for Claude Code/Codex/ChatGPT, and the first-MCP-server
-  tutorial. Use when the user mentions MCP, `mcp_servers`, `brainbase integrations`, connecting
+  generation, web search, and the first-MCP-server tutorial. Use when the user mentions MCP, `mcp_servers`, `brainbase integrations`, connecting
   Gmail/Slack/Notion to an agent, `needs_connection`, `outcome_unknown`, an approval card, a Tools
   page, or `mcp:`/`capabilities:` in `brainbase.agent.yaml`. Skills: brainbase-skills; memory
-  tables: brainbase-memory; channels: brainbase-surfaces; roles: brainbase-permissions.
+  tables: brainbase-memory; channels: brainbase-surfaces; roles: brainbase-permissions; the Brainbase MCP:
+  brainbase-mcp-tools.
 ---
 
 # Brainbase tools
@@ -40,7 +40,8 @@ The docs mirror this skill condenses is a snapshot from 2026-11-03. Fetch the li
 - Destructive: `brainbase integrations disconnect` removes the account for everyone using the agent (asks, or `--yes`); ending an integration context revokes its handle and grants; removing an orchestration MCP server affects every member on its next bootstrap. Confirm with the user first.
 - Credits: tasks and threads spend credits, so do Brainbase-MCP operations that start a task, run an eval, test a schedule or send a follow-up; image generation is billed through credits.
 - Retry safety: keep the same `operation_id` and input when retrying `run_action`, `proxy_request` or `upload_file`. Never work around `outcome_unknown` with a new id, task or context; a manager checks the app and acknowledges.
-- For live operations prefer what the user already has: `brainbase` CLI with `--json`, the REST API with the user's key, or the Brainbase MCP (companion plugin `brainbase-mcp`).
+- For live operations prefer what the user already has: `brainbase` CLI with `--json`, the REST API with the user's key, or the Brainbase MCP (`brainbase-mcp-tools`).
+- Brainbase MCP coverage: tools, for an agent's own MCP servers only. `mcp_servers_list`, `mcp_servers_upsert` and `mcp_servers_remove` add, change and remove a server by name without ever carrying credential values. Integrations and their rules, authorizing a server's OAuth, functions and browser proxies have no MCP tool; use the CLI below, or give the user the console steps when the session has no shell. Tools and write rules: `brainbase-mcp-tools`.
 
 ## Concepts
 
@@ -57,7 +58,7 @@ The docs mirror this skill condenses is a snapshot from 2026-11-03. Fetch the li
 | Built-in MCP | Orchestration, memory, browser, Slack, meeting, GitHub, Linear servers the CLI installs by capability or connection | `capabilities:`, `BRAINBASE_*_MCP_URL` |
 | Function | Custom script with schema, managed in the console | Tools page |
 | Browser | Managed browsing session; built-in MCP on by default; optional single active proxy | Browser tab, `capabilities.browser` |
-| Brainbase MCP | `https://api.brainbaselabs.com/mcp`, 52 tools, OAuth scope `mcp:all` | Claude Code, Codex, ChatGPT, Cursor, VS Code |
+| Brainbase MCP | `https://api.brainbaselabs.com/mcp`, OAuth scope `mcp:all`; manages your account from an MCP client. Its tools are in `brainbase-mcp-tools` | Claude Code, Codex, ChatGPT, Cursor, VS Code |
 
 ## Workflows
 
@@ -113,8 +114,7 @@ The docs mirror this skill condenses is a snapshot from 2026-11-03. Fetch the li
 ### 7. Connect the Brainbase MCP to a client
 
 1. Claude Code: `claude mcp add --transport http --scope user brainbase https://api.brainbaselabs.com/mcp`; Codex: `codex mcp add brainbase --url https://api.brainbaselabs.com/mcp`; ChatGPT: developer mode → custom app with the URL; any client: remote Streamable HTTP, let the client start OAuth, no headers.
-2. Optional operating skill: `claude plugin marketplace add --scope user BrainbaseHQ/brainbase-mcp` then `claude plugin install --scope user brainbase-mcp@brainbase` (Codex: `codex plugin marketplace add BrainbaseHQ/brainbase-mcp --ref main`, `codex plugin add brainbase-mcp@brainbase`), then restart the client.
-3. Work revision-safe: re-read before `expected_revision` updates, idempotency keys on creates, exact-name confirmation on deletes, confirm before billable task/eval/schedule runs. Workflows are excluded. See `references/brainbase-mcp.md`.
+2. Open `brainbase-mcp-tools` for everything after that: per-client steps, what to do when the server is unauthorized, every tool, the revision and confirmation rules, and which areas the MCP does not reach.
 
 ### 8. Turn the browser on or off, add a proxy, review a session
 
@@ -125,6 +125,14 @@ The docs mirror this skill condenses is a snapshot from 2026-11-03. Fetch the li
 ### 9. Wire your first MCP server (tutorial)
 
 Follow `references/tutorial-first-mcp-server.md`: stand up the reference Node server, declare a tool with a concrete `description`, deploy behind public HTTPS (a tunnel while iterating), attach via `mcp_servers`, restrict tools with server-side scopes, then verify with `brainbase mcp list` and `mcp check`.
+
+### 10. Manage an agent's MCP servers from an MCP client
+
+1. `agents_get` on the agent for its `revision`, then `mcp_servers_list`. Responses carry `has_headers` and `has_env` instead of credential values.
+2. `mcp_servers_upsert` with `agent_id`, `expected_revision`, `name`, `url` and `is_enabled` adds or changes one server. An upsert without credentials keeps the hidden ones already stored when the URL is unchanged. The docs say changing a server's URL clears its stored credentials and requires reconnecting, so tell the user before a URL change. Do not send headers, env values or tokens.
+3. `mcp_servers_remove` with the server's `name` removes it.
+4. Credentials and OAuth for the server are not reachable this way: have the user enter them on the agent's Tools page, or use `brainbase mcp connect <name>` from a shell (workflow 1).
+5. Integrations, functions and the browser have no Brainbase MCP tool. Full tool list and rules: `brainbase-mcp-tools`.
 
 ## Limits, gotchas and errors
 
@@ -143,6 +151,7 @@ Follow `references/tutorial-first-mcp-server.md`: stand up the reference Node se
 
 ## Related skills and live docs
 
+- `brainbase-mcp-tools`: operating Brainbase from an MCP client with the Brainbase MCP: every tool, revisions and confirmations, and what the MCP does not reach.
 - `brainbase-permissions`: who may connect apps, change rules, acknowledge outcomes; PAT scopes (`publish` for MCP connect links and orchestration server writes).
 - `brainbase-orchestration`: orchestrations, edges, triggers, the orchestration MCP's `create_task_for_<recipient>` tools, shared secrets.
 - `brainbase-surfaces`: Slack, Linear, GitHub, meetings and phone as channels (their built-in MCPs are only named here).
@@ -158,5 +167,5 @@ Follow `references/tutorial-first-mcp-server.md`: stand up the reference Node se
 | `references/mcp-servers.md` | Remote vs command servers, destination rules, the verified directory, manifest `mcp` fields and harness placement, `brainbase mcp` commands and exit codes, control-plane and public API fields, orchestration servers, composition, Override/Suppress, API error codes |
 | `references/builtin-mcps.md` | The seven built-in MCPs, default hosts and `BRAINBASE_*_MCP_URL` overrides, the token warning, `capabilities` fields, GitHub and Linear built-in tool names |
 | `references/functions-browser-appfactory.md` | Functions, browser and proxies, session playback, image generation, live web search, AppFactory compatibility, synchronous code and workflow app nodes, notebook recovery |
-| `references/brainbase-mcp.md` | Connecting Claude Code, Codex, ChatGPT, Cursor, VS Code, Claude; the `brainbase-mcp` companion packages; tool areas and safety contract; `mcp:all`; troubleshooting |
+| `references/brainbase-mcp.md` | What the Brainbase MCP is, the one-line connect commands, and the pointer to `brainbase-mcp-tools` |
 | `references/tutorial-first-mcp-server.md` | The wire-your-first-MCP-server tutorial as steps, with notes where it differs from the API reference |

@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: mcp-schedule-with-revision-conflict
+expected_outcome: |
+  Creates the orchestration with orchestrations_create and an idempotency key, adds members and the edge with dry runs, adds an inactive schedule with schedules_upsert, tests it with schedules_test using the persisted id as trigger_id after saying it is billable, and handles the 409 by re-reading and retrying once.

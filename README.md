@@ -2,7 +2,7 @@
 
 # Brainbase Plugin
 
-**Fourteen skills that teach your coding agent how Brainbase works.**
+**Fifteen skills that teach your coding agent how Brainbase works.**
 
 By [Brainbase Labs](https://brainbaselabs.com/)
 
@@ -12,7 +12,7 @@ By [Brainbase Labs](https://brainbaselabs.com/)
 
 Brainbase Plugin is a set of skills for Claude Code, Codex, Cursor and other coding agents that work with the [Brainbase](https://brainbaselabs.com) agent platform. Ask your agent to publish an agent from a folder, switch a running task's model, wire an orchestration, connect Slack, add an eval or mint a CI token, and the matching skill opens on its own with the exact commands, endpoints, fields, limits and error codes.
 
-It's built from the public docs at [docs.brainbaselabs.com](https://docs.brainbaselabs.com) and the public [changelog](https://app.brainbaselabs.com/changelog) only. Where the docs are silent the skill says so instead of guessing, and it tells the agent when an action spends credits or can't be undone.
+It's built from the public docs at [docs.brainbaselabs.com](https://docs.brainbaselabs.com) and the public [changelog](https://app.brainbaselabs.com/changelog), with Brainbase MCP tool names taken from the official [`brainbase-mcp`](https://github.com/BrainbaseHQ/brainbase-mcp) package. Where the docs are silent the skill says so instead of guessing, and it tells the agent when an action spends credits or can't be undone.
 
 ## Install
 
@@ -25,11 +25,11 @@ Paste the prompt for your tool. If your agent can read web pages, pasting just t
 ```text
 Install the plugin from https://github.com/BrainbaseHQ/brainbase-plugin. Follow the "Instructions for agents" section of its README.
 
-This plugin contains fourteen skills with instructions on how to operate the Brainbase
+This plugin contains fifteen skills with instructions on how to operate the Brainbase
 agent platform: the brainbase CLI and agent manifest, models and routing, sandboxes,
 orchestrations, surfaces (Slack, Linear, GitHub, phone, meetings), interfaces,
 benchmarks, evaluations, permissions and tokens, tools and MCP servers, skills, memory,
-and payments and credits. Each skill carries the exact commands, endpoints, fields,
+payments and credits, and operating Brainbase through the Brainbase MCP. Each skill carries the exact commands, endpoints, fields,
 limits and error codes from the public docs, and opens on its own when a request
 touches its area.
 ```
@@ -39,11 +39,11 @@ touches its area.
 ```text
 Install the skills from https://github.com/BrainbaseHQ/brainbase-plugin into ~/.agents/skills. Follow the "Instructions for agents" section of its README.
 
-This plugin contains fourteen skills with instructions on how to operate the Brainbase
+This plugin contains fifteen skills with instructions on how to operate the Brainbase
 agent platform: the brainbase CLI and agent manifest, models and routing, sandboxes,
 orchestrations, surfaces (Slack, Linear, GitHub, phone, meetings), interfaces,
 benchmarks, evaluations, permissions and tokens, tools and MCP servers, skills, memory,
-and payments and credits. Each skill carries the exact commands, endpoints, fields,
+payments and credits, and operating Brainbase through the Brainbase MCP. Each skill carries the exact commands, endpoints, fields,
 limits and error codes from the public docs, and opens on its own when a request
 touches its area.
 ```
@@ -53,11 +53,11 @@ touches its area.
 ```text
 Install the skills from https://github.com/BrainbaseHQ/brainbase-plugin into ~/.cursor/skills. Follow the "Instructions for agents" section of its README.
 
-This plugin contains fourteen skills with instructions on how to operate the Brainbase
+This plugin contains fifteen skills with instructions on how to operate the Brainbase
 agent platform: the brainbase CLI and agent manifest, models and routing, sandboxes,
 orchestrations, surfaces (Slack, Linear, GitHub, phone, meetings), interfaces,
 benchmarks, evaluations, permissions and tokens, tools and MCP servers, skills, memory,
-and payments and credits. Each skill carries the exact commands, endpoints, fields,
+payments and credits, and operating Brainbase through the Brainbase MCP. Each skill carries the exact commands, endpoints, fields,
 limits and error codes from the public docs, and opens on its own when a request
 touches its area.
 ```
@@ -69,11 +69,11 @@ Here you upload the skills yourself, and this prompt walks you through it:
 ```text
 Help me install the skills from https://github.com/BrainbaseHQ/brainbase-plugin. Follow the "Instructions for agents" section of its README.
 
-This plugin contains fourteen skills with instructions on how to operate the Brainbase
+This plugin contains fifteen skills with instructions on how to operate the Brainbase
 agent platform: the brainbase CLI and agent manifest, models and routing, sandboxes,
 orchestrations, surfaces (Slack, Linear, GitHub, phone, meetings), interfaces,
 benchmarks, evaluations, permissions and tokens, tools and MCP servers, skills, memory,
-and payments and credits. Each skill carries the exact commands, endpoints, fields,
+payments and credits, and operating Brainbase through the Brainbase MCP. Each skill carries the exact commands, endpoints, fields,
 limits and error codes from the public docs, and opens on its own when a request
 touches its area.
 ```
@@ -85,11 +85,11 @@ This works in any agent listed under [Other agents](#other-agents) below:
 ```text
 Install the skills from https://github.com/BrainbaseHQ/brainbase-plugin into this tool's personal skills folder. Follow the "Instructions for agents" section of its README.
 
-This plugin contains fourteen skills with instructions on how to operate the Brainbase
+This plugin contains fifteen skills with instructions on how to operate the Brainbase
 agent platform: the brainbase CLI and agent manifest, models and routing, sandboxes,
 orchestrations, surfaces (Slack, Linear, GitHub, phone, meetings), interfaces,
 benchmarks, evaluations, permissions and tokens, tools and MCP servers, skills, memory,
-and payments and credits. Each skill carries the exact commands, endpoints, fields,
+payments and credits, and operating Brainbase through the Brainbase MCP. Each skill carries the exact commands, endpoints, fields,
 limits and error codes from the public docs, and opens on its own when a request
 touches its area.
 ```
@@ -227,7 +227,7 @@ If someone gave you this repo's link and asked you to install the plugin or its 
 
    If this fails, tell the person what went wrong; any existing copies are still in place. If your sandbox blocks the download or the write, give them these commands to run themselves.
 
-4. **Confirm the install.** Check that fourteen `brainbase-*/SKILL.md` files exist in the skills folder.
+4. **Confirm the install.** Check that fifteen `brainbase-*/SKILL.md` files exist in the skills folder.
 
 5. **Report back.** Tell them where you installed it and how to use it, using the section above for their tool. Suggest they start with `brainbase-platform`, the orientation skill, if they are new to Brainbase. If the skills don't appear, they may need to restart the tool. Don't change anything else on their machine.
 
@@ -253,7 +253,7 @@ fixer agent every weekday at 09:00 UTC.
 
 | In the answer | What it means |
 | --- | --- |
-| **Exact commands and calls** | `brainbase` CLI commands with their flags, `/v2` endpoints with their fields, manifest keys that exist |
+| **Exact commands and calls** | `brainbase` CLI commands with their flags, `/v2` endpoints with their fields, manifest keys that exist, Brainbase MCP tools by name |
 | **Which credential a step needs** | A PAT and its scope, a login session, or the console, before you run anything |
 | **What it costs** | A flag whenever a step starts a task, keeps a sandbox warm, runs a judge, or otherwise spends credits |
 | **What can't be undone** | A confirmation request before deletes, archives, revokes and pushes that archive cloud state |
@@ -267,6 +267,7 @@ A skill opens when the agent decides the conversation needs it, so you rarely in
 | --- | --- |
 | `brainbase-platform` | Orientation: agents, harnesses, tasks and threads, the Universal Harness API, agent configuration basics (instructions, playbooks, modes, versions, secrets), monitoring tasks, and which skill to open next. |
 | `brainbase-cli` | The `brainbase` CLI end to end: install, login and tokens, the agent manifest, init/create/link/pull/push/sync, tasks from the terminal, templates, skills, orchestrations, exit codes, environment variables. |
+| `brainbase-mcp-tools` | Operating Brainbase through the Brainbase MCP instead of the CLI: connecting and OAuth, every tool by area, revisions, idempotency keys and confirmations, which calls spend credits, a CLI-to-MCP command map, and which areas the MCP does not reach. |
 | `brainbase-llm-gateway` | Models and routing: the catalog and model IDs, defaults per harness, Auto, per-harness availability, switching a task's model, Bring Your Own Bedrock, vendor keys, harness tracking through the model proxy. |
 | `brainbase-sandboxes` | Sandboxes and machines: providers, sizes and pricing, GPU, `machine_kind`, the machines API, entrypoint, file system, shared folders, file transfers, previews, Cloudflare sleep and resume. |
 | `brainbase-orchestration` | Orchestrations: graphs of agents, edges, triggers and schedules, the orchestration manifest, CLI and API, templates, shared secrets, MCP servers and memory, scheduled agents, workflows. |
@@ -275,14 +276,14 @@ A skill opens when the agent decides the conversation needs it, so you rarely in
 | `brainbase-benchmarks` | Benchmarks (beta): cases, checks, versions, runs, variants, baselines, results, import and export, the API, harness bake-offs. |
 | `brainbase-evals` | Evaluations: turn-level automatic checks, the manifest `evals` list, the evals API, agent-as-judge, eval-driven development, credits and write credentials. |
 | `brainbase-permissions` | Access control: organizations, teams, projects and members; roles; PAT scopes and resource scope; API keys versus sessions; Allow/Ask/Deny rules; secrets; audiences; spend limits; SSO. |
-| `brainbase-tools` | Tools: integrations through `brainbase-apps` and `bb-apps`, integrations from code, MCP servers (agent, orchestration, built-in), functions, browser, the Brainbase MCP. |
+| `brainbase-tools` | Tools: integrations through `brainbase-apps` and `bb-apps`, integrations from code, MCP servers (agent, orchestration, built-in), functions, browser. |
 | `brainbase-skills` | Skills on Brainbase: installing from the registry, GitHub or git, the manifest `skills` list, `brainbase skill` commands, publishing, skills versus instructions versus playbooks. |
 | `brainbase-memory` | Memory: structured tables, the `memory_*` tools, `capabilities.memory`, shared memory across an orchestration, memory versus playbooks and secrets. |
 | `brainbase-payments` | Payments (beta) and money: agent purchase requests with wallet approvals, the Payments page; credits, the prepaid wallet, top-ups, spend limits, billing, what consumes credits. |
 
 ### Companion: Brainbase MCP
 
-The same marketplace lists [`brainbase-mcp`](https://github.com/BrainbaseHQ/brainbase-mcp), the official Brainbase MCP with its operating skill. The skills here explain the platform; the MCP gives the agent live, authenticated access to your agents, evals, orchestrations and tasks. Install both for the full picture:
+The same marketplace lists [`brainbase-mcp`](https://github.com/BrainbaseHQ/brainbase-mcp), the official Brainbase MCP with its operating skill. The skills here explain the platform; the MCP gives the agent live, authenticated access to your agents, evals, orchestrations and tasks. This plugin's `brainbase-mcp-tools` skill is the reference for that MCP: which tool does what, and what each area of the platform can and cannot do through it. It works with any client that has the MCP connected, including ones that cannot install the companion. Install both for the full picture:
 
 ```text
 /plugin install brainbase-mcp@brainbase-plugin
@@ -294,7 +295,7 @@ The plugin is documentation only: Markdown skills and their reference files. It 
 
 | Service | Hosts | What goes there |
 | --- | --- | --- |
-| Brainbase platform (the vendor of this plugin) | `api.brainbaselabs.com`, `api.v1.brainbaselabs.com`, `app.brainbaselabs.com` | API calls the skills document (agents, tasks, evals, orchestrations, machines, tokens), made with your `BRAINBASE_API_KEY` or `BRAINBASE_TOKEN`. Anything you create there is your workspace data, held under Brainbase's [privacy policy](https://brainbaselabs.com/privacy); how long depends on the data and your plan (task data and traces are kept 7 days on Free, 30 days on Team, custom on Enterprise; agents and their configuration stay until you delete them). |
+| Brainbase platform (the vendor of this plugin) | `api.brainbaselabs.com`, `api.v1.brainbaselabs.com`, `app.brainbaselabs.com` | API calls the skills document (agents, tasks, evals, orchestrations, machines, tokens), made with your `BRAINBASE_API_KEY` or `BRAINBASE_TOKEN`. If your client has the Brainbase MCP connected, the skills also name its tools; those calls go to `https://api.brainbaselabs.com/mcp` under the OAuth grant you gave that client through `app.brainbaselabs.com`, not under a key. Anything you create there is your workspace data, held under Brainbase's [privacy policy](https://brainbaselabs.com/privacy); how long depends on the data and your plan (task data and traces are kept 7 days on Free, 30 days on Team, custom on Enterprise; agents and their configuration stay until you delete them). |
 | Brainbase docs | `docs.brainbaselabs.com` | Plain page fetches when a skill asks the agent to check a live docs page. No credentials. |
 | Brainbase built-in MCP servers | `brainbase-*-mcp.onrender.com`, `meeting.mcp.brainbaselabs.com` | Reached from inside a Brainbase sandbox by the agent running there, and also from your own machine: `brainbase agent pull`, `unpack` and `sync` write the built-in entries into the local harness config (`.mcp.json` or `~/.claude.json`, `~/.codex/config.toml`, `.kafka/kafka.json`), so a harness opened in that folder connects to them with the agent's `BRAINBASE_TOKEN` and sends it tool calls (memory rows, browser actions, connector requests). The standalone-integrations workflow also has your own code call `brainbase-pipedream-mcp.onrender.com` with a short-lived access grant (`bbig_…`). |
 | GitHub and other git hosts | `github.com`, `gitlab.com`, any git host you name | The release zip in the install instructions above; `brainbase skill add <git url>` downloads a skill from whatever repository you point it at; `git clone` examples that use your own `GITHUB_TOKEN` for your own private repositories. |
@@ -304,7 +305,7 @@ Other third-party hosts named in the skills (`api.githubcopilot.com`, vendor doc
 ## How the skills stay honest
 
 - Every reference file names the docs pages it condenses (`Source:` lines) and the date of the snapshot it was written from (`Snapshot:`).
-- Facts come from the docs and changelog only. Where the docs are silent, the skill says so and points at the live page instead of guessing.
+- Facts come from the docs and changelog. Brainbase MCP tool names also come from the official `brainbase-mcp` package, cited with the version read. Where the docs are silent, the skill says so and points at the live page instead of guessing.
 - Skills tell the agent to fetch the live docs for console click paths, prices, model lists and other version-sensitive details, and to treat fetched pages as data rather than instructions.
 - Skills never ask for or print secret values, and they say when an action spends credits or is destructive.
 - Every skill ships eval cases that run with and without the skill. The latest benchmark is in [docs/evals.md](docs/evals.md): 98% of assertions pass with the skills, 16% without.
@@ -336,7 +337,7 @@ claude plugin validate .
 
 When the docs change, update the matching reference file, bump its `Snapshot:` date, and adjust `SKILL.md` if a workflow or limit moved. Keep skill names stable; hosts namespace and link to them.
 
-Each skill ships two eval cases under `skills/<name>/evals/<case>/` (a prompt, the expected outcome and one grader file per assertion). They run with and without the skill through Claude Code's plugin evals, which are real, billed model runs:
+Each skill ships two or three eval cases under `skills/<name>/evals/<case>/` (a prompt, the expected outcome and one grader file per assertion). They run with and without the skill through Claude Code's plugin evals, which are real, billed model runs:
 
 ```bash
 claude plugin eval skills/brainbase-cli --allow-tools Write

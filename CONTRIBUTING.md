@@ -3,7 +3,7 @@
 Thanks for helping keep these skills accurate.
 
 1. Read [docs/skill-authoring.md](docs/skill-authoring.md). It explains the layout, the frontmatter, the section order and the grounding rules every skill follows.
-2. Ground every change in a public page: [docs.brainbaselabs.com](https://docs.brainbaselabs.com) or the [changelog](https://app.brainbaselabs.com/changelog). Name the page in the reference file's `Source:` lines and update its `Snapshot:` date.
+2. Ground every change in a public page: [docs.brainbaselabs.com](https://docs.brainbaselabs.com) or the [changelog](https://app.brainbaselabs.com/changelog). Brainbase MCP tool names may also come from the official [`BrainbaseHQ/brainbase-mcp`](https://github.com/BrainbaseHQ/brainbase-mcp) package, cited with its version as [docs/skill-authoring.md](docs/skill-authoring.md) describes. Name the page in the reference file's `Source:` lines and update its `Snapshot:` date.
 3. Never commit secret values or realistic-looking tokens. Placeholders only.
 4. Run the checks before opening a pull request:
 

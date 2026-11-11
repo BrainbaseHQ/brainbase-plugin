@@ -7,13 +7,13 @@
   },
   "metadata": {
     "description": "Official Brainbase plugin marketplace",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "plugins": [
     {
       "name": "brainbase",
       "displayName": "Brainbase Skills",
-      "description": "Skills for building and operating agents on Brainbase: the CLI, models and the LLM gateway, sandboxes, orchestration, surfaces, interfaces, benchmarks, evals, permissions, tools, skills, memory, and payments.",
+      "description": "Skills for building and operating agents on Brainbase: the CLI, models and the LLM gateway, sandboxes, orchestration, surfaces, interfaces, benchmarks, evals, permissions, tools, skills, memory, payments, and the Brainbase MCP's tools.",
       "author": {
         "name": "Brainbase Labs"
       },
