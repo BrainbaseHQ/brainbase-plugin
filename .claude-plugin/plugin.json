@@ -1,8 +1,8 @@
 {
   "name": "brainbase",
   "displayName": "Brainbase Skills",
-  "version": "0.1.0",
-  "description": "Skills for building and operating agents on Brainbase: the CLI, models and the LLM gateway, sandboxes, orchestration, surfaces, interfaces, benchmarks, evals, permissions, tools, skills, memory, and payments.",
+  "version": "0.2.0",
+  "description": "Skills for building and operating agents on Brainbase: the CLI, models and the LLM gateway, sandboxes, orchestration, surfaces, interfaces, benchmarks, evals, permissions, tools, skills, memory, payments, and the Brainbase MCP's tools.",
   "author": {
     "name": "Brainbase Labs",
     "url": "https://brainbaselabs.com"

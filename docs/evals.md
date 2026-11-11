@@ -19,6 +19,8 @@ claude plugin eval skills/brainbase-cli --allow-tools Write
 
 The CLI runs each case with and without the skill and writes its report under `evals/results/`. These are real, billed model runs; a skill's two cases cost roughly four executor runs plus grading.
 
+Five later cases pose an agent that only has the Brainbase MCP connected: `mcp-schedule-with-revision-conflict` and `mcp-no-tool-from-shell-less-client` in `brainbase-mcp-tools`, `evals-run-through-mcp`, `sandbox-machine-size-through-mcp` and `interface-publish-without-mcp-tool`. The eval harness exposes no MCP tools, so each prompt states what the agent has connected and the graders read the written answer. They have not been run yet and are not in the tables below.
+
 ## Benchmark, iteration 1 (2026-11-03)
 
 Setup: 28 cases, one run per configuration, Sonnet executors with web tools allowed in both configurations (so the baseline reflects what a model finds on the live docs unaided). Graded against the 136 assertions by separate grader agents using the skill files as the source of truth.
