@@ -17,7 +17,7 @@ The MCP makes targeted writes guarded by revisions. These rules match the offici
 
 ## Revisions
 
-Every editable resource returns a `revision`: the agent (also covering its skills, MCP servers and playbooks), each eval, each orchestration. A successful write changes it.
+Every editable resource returns a `revision`: the agent, each eval, each orchestration. Skill and MCP server writes take the agent's revision. Playbook writes take the revision `playbooks_list` returns. A successful write changes it.
 
 Two ways an agent conflicts with itself:
 
